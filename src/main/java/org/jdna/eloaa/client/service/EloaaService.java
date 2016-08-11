@@ -29,6 +29,7 @@ import org.jdna.eloaa.client.model.GResponse;
 import org.jdna.eloaa.shared.nzbs.model.NzbItem;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by seans on 04/08/16.
@@ -62,4 +63,7 @@ public interface EloaaService extends RemoteService {
     public GResponse<Boolean> deleteMovie(GMovie movie);
 
     public GResponse<Boolean> removeMovie(GMovie movie);
+
+    public GResponse<Map<String,String>> getProperties();
+    public GResponse<Boolean> updateProperties(Map<String,String> props);
 }

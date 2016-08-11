@@ -33,8 +33,9 @@ import org.jdna.sabnzbd.api.services.SABNZBDService;
 
 import java.io.File;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
-import java.util.Properties;
+import java.util.*;
 
 /**
  * Created by seans on 06/08/16.
@@ -53,11 +54,25 @@ public class App {
     private org.jdna.eloaa.server.db.DBManager dbManager;
     private File downloadDir;
     private Properties properties;
+    private File propFile;
 
     public static App get() {
         return INSTANCE;
     }
 
+    private static final List<String> propertyKeys = Arrays.asList(
+            "eloaa.sabnzbd.apikey",
+            "eloaa.sabnzbd.url",
+            "eloaa.nzbs.apikey",
+            "eloaa.nzbs.url",
+            "eloaa.movies.dir",
+            "eloaa.tmdb.apikey",
+            "eloaa.download.dir"
+    );
+
+    public static List<String> getPropertyKeys() {
+        return propertyKeys;
+    }
 
     public App() {
         init();
@@ -96,7 +111,7 @@ public class App {
 
     private void initConfig() {
         this.properties = new Properties();
-        File propFile = new File(getConfigDir(), "config.properties");
+        propFile = new File(getConfigDir(), "config.properties");
         if (propFile.exists()) {
             try {
                 FileReader fr = new FileReader(propFile);
@@ -125,6 +140,7 @@ public class App {
     }
 
     private void initSAB() {
+        System.out.println("INitializing SABNZBD");
         String url = getProperty("eloaa.sabnzbd.url");
         String api = getProperty("eloaa.sabnzbd.apikey");
         if (url==null || api==null) {
@@ -135,6 +151,7 @@ public class App {
     }
 
     private void initNZBSearcher() {
+        System.out.println("INitializing NZB Indexer");
         String url = getProperty("eloaa.nzbs.url");
         String api = getProperty("eloaa.nzbs.apikey");
         if (url==null || api==null) {
@@ -145,6 +162,7 @@ public class App {
     }
 
     private void initTMDB() {
+        System.out.println("INitializing TMDB Search");
         String api = getProperty("eloaa.tmdb.apikey");
         if (api==null) {
             System.err.println("Need to configure TMDB");
@@ -189,7 +207,10 @@ public class App {
 
     public File getConfigDir() {
         if (configDir==null) {
-            String dir = System.getProperty("eloaa.config.dir", new File("./config").getAbsolutePath());
+            String dir = System.getenv("eloaa.config.dir".toUpperCase().replace('.','_'));
+            if (dir==null) {
+                dir = System.getProperty("eloaa.config.dir", new File("./config").getAbsolutePath());
+            }
             configDir = new File(dir);
             configDir.mkdirs();
         }
@@ -201,6 +222,7 @@ public class App {
             String dir = getProperty("eloaa.movies.dir", new File("./movies").getAbsolutePath());
             moviesDir = new File(dir);
             moviesDir.mkdirs();
+            properties.setProperty("eloaa.movies.dir", moviesDir.getAbsolutePath());
         }
         return moviesDir.getAbsoluteFile();
     }
@@ -210,6 +232,7 @@ public class App {
             String dir = getProperty("eloaa.download.dir", new File("./downloads").getAbsolutePath());
             downloadDir = new File(dir);
             downloadDir.mkdirs();
+            properties.setProperty("eloaa.download.dir", downloadDir.getAbsolutePath());
         }
         return downloadDir.getAbsoluteFile();
     }
@@ -247,5 +270,36 @@ public class App {
 
     public QueueMonitor getQueueMonitor() {
         return queueMonitor;
+    }
+
+    public Properties getProperties() {
+        return properties;
+    }
+
+    public void propertiesChanged(Map<String, String> props) {
+        System.out.println("Properties Changed, Reconfiguring Services");
+        if (props.containsKey("eloaa.nzbs.url") || props.containsKey("eloaa.nzbs.apikey")) {
+            // init NZBS indexer
+            initNZBSearcher();
+        }
+        if (props.containsKey("eloaa.sabnzbd.url") || props.containsKey("eloaa.sabnzbd.apikey")) {
+            // init sab
+            initSAB();
+        }
+
+        if (props.containsKey("eloaa.tmdb.apikey")) {
+            // init tmdb
+            initTMDB();
+        }
+
+        downloadDir=null;
+        moviesDir=null;
+
+        try (FileWriter fw = new FileWriter(propFile)) {
+            properties.store(fw,"web update");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        System.out.println("Properties Changed, Serviced Reconfigured");
     }
 }

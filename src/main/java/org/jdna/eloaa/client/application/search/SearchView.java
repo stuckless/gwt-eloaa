@@ -72,6 +72,9 @@ public class SearchView extends ViewImpl implements SearchPresenter.MyView, Sear
 
     @Override
     protected void onDetach() {
+        if (searchHandler!=null) {
+            searchHandler.removeHandler();
+        }
         GApp.get().getEventBus().fireEvent(new SearchEvent(false, null));
         super.onDetach();
     }

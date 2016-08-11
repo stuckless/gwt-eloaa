@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Containers>
+    <Beta>True</Beta>
+    <Category>MediaApp:Video MediaServer:Video</Category>
+    <Name>eloaa</Name>
+    <Description>
+        Search Movies
+    </Description>
+    <Overview>
+        Search Movies
+    </Overview>
+    <Support></Support>
+    <Registry>https://hub.docker.com/r/stuckless/eloaa/</Registry>
+    <GitHub>https://github.com/stuckless/gwt-eloaa/</GitHub>
+    <Repository>stuckless/eloaa</Repository>
+    <BindTime>true</BindTime>
+    <Privileged>false</Privileged>
+    <Networking>
+        <Mode>host</Mode>
+        <Publish>
+            <Port>
+                <HostPort>8080</HostPort>
+                <ContainerPort>8080</ContainerPort>
+                <Protocol>tcp</Protocol>
+            </Port>
+        </Publish>
+    </Networking>
+    <Environment>
+    </Environment>
+    <Data>
+        <Volume>
+            <HostDir>/mnt/user/apps/eloaa/</HostDir>
+            <ContainerDir>/config</ContainerDir>
+            <Mode>rw</Mode>
+        </Volume>
+        <Volume>
+            <HostDir>/mnt/user/apps/eloaa_logs/</HostDir>
+            <ContainerDir>/usr/local/tomcat/logs</ContainerDir>
+            <Mode>rw</Mode>
+        </Volume>
+        <Volume>
+            <HostDir>/mnt/user/media/downloads/</HostDir>
+            <ContainerDir>/downloads</ContainerDir>
+            <Mode>rw</Mode>
+        </Volume>
+        <Volume>
+            <HostDir>/mnt/user/media/movies/</HostDir>
+            <ContainerDir>/movies</ContainerDir>
+            <Mode>rw</Mode>
+        </Volume>
+    </Data>
+    <WebUI>http://[IP]:[PORT:8080]/</WebUI>
+    <Banner></Banner>
+    <Icon></Icon>
+    <ExtraParams></ExtraParams>
+</Containers>

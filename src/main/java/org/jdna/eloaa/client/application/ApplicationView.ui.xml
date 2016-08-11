@@ -77,10 +77,10 @@
         </g:HTMLPanel>
 
         <!-- Footer -->
-        <m:MaterialFooter backgroundColor="blue" type="FIXED">
-            <m:MaterialFooterCopyright>
-                <m:MaterialLabel text="© 2017 Copyright Eloaa" />
-            </m:MaterialFooterCopyright>
-        </m:MaterialFooter>
+        <!--<m:MaterialFooter backgroundColor="blue" type="FIXED">-->
+            <!--<m:MaterialFooterCopyright>-->
+                <!--<m:MaterialLabel text="© 2017 Copyright Eloaa" />-->
+            <!--</m:MaterialFooterCopyright>-->
+        <!--</m:MaterialFooter>-->
     </g:HTMLPanel>
 </ui:UiBinder>

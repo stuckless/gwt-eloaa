@@ -25,6 +25,7 @@ import com.j256.ormlite.stmt.QueryBuilder;
 import com.uwetrottmann.tmdb2.entities.Movie;
 import com.uwetrottmann.tmdb2.entities.MovieResultsPage;
 import com.uwetrottmann.tmdb2.services.SearchService;
+import org.jdna.eloaa.client.application.GApp;
 import org.jdna.eloaa.client.model.GMovie;
 import org.jdna.eloaa.client.model.GProgress;
 import org.jdna.eloaa.client.model.GResponse;
@@ -254,5 +255,29 @@ public class EloaaServiceImpl extends RemoteServiceServlet implements EloaaServi
             e.printStackTrace();
         }
         return new GResponse<>(false);
+    }
+
+    @Override
+    public GResponse<Map<String, String>> getProperties() {
+        Map<String,String> props = new HashMap<>();
+        for (String s: App.getPropertyKeys()) {
+            props.put(s, App.get().getProperty(s,""));
+        }
+        return new GResponse<>(props);
+    }
+
+    @Override
+    public GResponse<Boolean> updateProperties(Map<String, String> props) {
+        try {
+            for (Map.Entry<String, String> me : props.entrySet()) {
+                System.out.println("Updating: " + me.getKey() + "=" + me.getValue());
+                App.get().getProperties().setProperty(me.getKey(), me.getValue());
+            }
+            App.get().propertiesChanged(props);
+            return new GResponse<>(true);
+        } catch (Throwable t) {
+            t.printStackTrace();
+            return new GResponse<>(100, "Failed to save", false);
+        }
     }
 }

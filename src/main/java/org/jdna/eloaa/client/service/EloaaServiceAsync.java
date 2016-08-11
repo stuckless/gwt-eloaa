@@ -27,6 +27,7 @@ import org.jdna.eloaa.client.model.GResponse;
 import org.jdna.eloaa.shared.nzbs.model.NzbItem;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by seans on 04/08/16.
@@ -47,4 +48,8 @@ public interface EloaaServiceAsync {
     void deleteMovie(GMovie movie, AsyncCallback<GResponse<Boolean>> async);
 
     void removeMovie(GMovie movie, AsyncCallback<GResponse<Boolean>> async);
+
+    void getProperties(AsyncCallback<GResponse<Map<String, String>>> async);
+
+    void updateProperties(Map<String, String> props, AsyncCallback<GResponse<Boolean>> async);
 }
