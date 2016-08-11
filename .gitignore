@@ -1,0 +1,7 @@
+.idea/
+.utility/
+config/
+downloads/
+movies/
+target/
+*.iml

@@ -1,0 +1,706 @@
+{
+  "history": {
+    "diskspace2_norm": "3.6 T",
+    "active_lang": "en",
+    "session": "4e70b0c2efbf2e6daf97313d8f21a039",
+    "speedlimit_abs": "",
+    "slots": [
+      {
+        "action_line": "",
+        "series": "major crimes/5/7",
+        "show_details": "True",
+        "script_log": "",
+        "meta": null,
+        "fail_message": "",
+        "loaded": false,
+        "id": 207,
+        "size": "343 MB",
+        "category": "tv",
+        "pp": "D",
+        "retry": 0,
+        "completeness": 0,
+        "script": "Default",
+        "nzb_name": "Major.Crimes.S05E07.HDTV.x264-FLEET.nzb",
+        "download_time": 196,
+        "storage": "/downloads/tv/Major.Crimes.S05E07.HDTV.x264-FLEET",
+        "has_rating": false,
+        "status": "Completed",
+        "script_line": "",
+        "completed": 1470108842,
+        "nzo_id": "SABnzbd_nzo_w99dg4",
+        "downloaded": 359893156,
+        "report": "",
+        "path": "/downloads/incomplete/Major.Crimes.S05E07.HDTV.x264-FLEET",
+        "postproc_time": 1,
+        "name": "Major.Crimes.S05E07.HDTV.x264-FLEET",
+        "url": "Major.Crimes.S05E07.HDTV.x264-FLEET.nzb",
+        "md5sum": "12ed958f6845cf0aa14b74635df4ef35",
+        "bytes": 359893156,
+        "url_info": "",
+        "stage_log": [
+          {
+            "name": "Source",
+            "actions": [
+              "Major.Crimes.S05E07.HDTV.x264-FLEET.nzb"
+            ]
+          },
+          {
+            "name": "Download",
+            "actions": [
+              "Downloaded in 3 mins 16 seconds at an average of 1.7 MB/s<br/>Age: 31m"
+            ]
+          },
+          {
+            "name": "Servers",
+            "actions": [
+              "news.tweaknews.eu=343 MB"
+            ]
+          },
+          {
+            "name": "Repair",
+            "actions": [
+              "[major.crimes.s05e07.hdtv.x264-fleet] Quick Check OK",
+              "[major.crimes.s05e07.hdtv.x264-fleet.sample] Quick Check OK"
+            ]
+          },
+          {
+            "name": "Unpack",
+            "actions": [
+              "[major.crimes.s05e07.hdtv.x264-fleet] Unpacked 1 files/folders in 1 sec"
+            ]
+          }
+        ]
+      },
+      {
+        "action_line": "",
+        "series": "rizzoli and isles/7/9",
+        "show_details": "True",
+        "script_log": "",
+        "meta": null,
+        "fail_message": "",
+        "loaded": false,
+        "id": 206,
+        "size": "293 MB",
+        "category": "tv",
+        "pp": "D",
+        "retry": 0,
+        "completeness": 0,
+        "script": "Default",
+        "nzb_name": "Rizzoli.and.Isles.S07E09.HDTV.x264-FLEET.nzb",
+        "download_time": 221,
+        "storage": "/downloads/tv/Rizzoli.and.Isles.S07E09.HDTV.x264-FLEET",
+        "has_rating": false,
+        "status": "Completed",
+        "script_line": "",
+        "completed": 1470105265,
+        "nzo_id": "SABnzbd_nzo_ngWA5V",
+        "downloaded": 307455054,
+        "report": "",
+        "path": "/downloads/incomplete/Rizzoli.and.Isles.S07E09.HDTV.x264-FLEET",
+        "postproc_time": 1,
+        "name": "Rizzoli.and.Isles.S07E09.HDTV.x264-FLEET",
+        "url": "Rizzoli.and.Isles.S07E09.HDTV.x264-FLEET.nzb",
+        "md5sum": "b4c2d0c03227300056b160d8f160d504",
+        "bytes": 307455054,
+        "url_info": "",
+        "stage_log": [
+          {
+            "name": "Source",
+            "actions": [
+              "Rizzoli.and.Isles.S07E09.HDTV.x264-FLEET.nzb"
+            ]
+          },
+          {
+            "name": "Download",
+            "actions": [
+              "Downloaded in 3 mins 41 seconds at an average of 1.3 MB/s<br/>Age: 31m"
+            ]
+          },
+          {
+            "name": "Servers",
+            "actions": [
+              "news.tweaknews.eu=293 MB"
+            ]
+          },
+          {
+            "name": "Repair",
+            "actions": [
+              "[rizzoli.and.isles.s07e09.hdtv.x264-fleet] Quick Check OK"
+            ]
+          },
+          {
+            "name": "Unpack",
+            "actions": [
+              "[rizzoli.and.isles.s07e09.hdtv.x264-fleet] Unpacked 1 files/folders in 1 sec"
+            ]
+          }
+        ]
+      },
+      {
+        "action_line": "",
+        "series": "",
+        "show_details": "True",
+        "script_log": "",
+        "meta": null,
+        "fail_message": "",
+        "loaded": false,
+        "id": 205,
+        "size": "1.0 GB",
+        "category": "*",
+        "pp": "D",
+        "retry": 0,
+        "completeness": 0,
+        "script": "Default",
+        "nzb_name": "Man.of.Steel.2013.720p.BrRip.x264-YIFY.nzb",
+        "download_time": 560,
+        "storage": "/downloads/Man.of.Steel.2013.720p.BrRip.x264-YIFY",
+        "has_rating": false,
+        "status": "Completed",
+        "script_line": "",
+        "completed": 1470094724,
+        "nzo_id": "SABnzbd_nzo_Ww6ue4",
+        "downloaded": 1085828915,
+        "report": "",
+        "path": "/downloads/incomplete/Man.of.Steel.2013.720p.BrRip.x264-YIFY",
+        "postproc_time": 5,
+        "name": "Man.of.Steel.2013.720p.BrRip.x264-YIFY",
+        "url": "https://nzbs.in/getnzb/ccccdd382723b6087c6104716effd18b.nzb&i=24913&r=8253d3e9536c34720fc9807bf01ef702&del=1",
+        "md5sum": "465d32649e734413390839fe680163f3",
+        "bytes": 1085828915,
+        "url_info": "https://nzbs.in/details/ccccdd382723b6087c6104716effd18b",
+        "stage_log": [
+          {
+            "name": "Source",
+            "actions": [
+              "https://nzbs.in/getnzb/ccccdd382723b6087c6104716effd18b.nzb&i=24913&r=8253d3e9536c34720fc9807bf01ef702&del=1"
+            ]
+          },
+          {
+            "name": "Download",
+            "actions": [
+              "Downloaded in 9 mins 20 seconds at an average of 1.8 MB/s<br/>Age: 724d"
+            ]
+          },
+          {
+            "name": "Servers",
+            "actions": [
+              "news.tweaknews.eu=1.0 GB"
+            ]
+          },
+          {
+            "name": "Repair",
+            "actions": [
+              "[hE0sc763yYr3K8SK7J34Nn54wDwxsC63S09U4] Quick Check OK"
+            ]
+          },
+          {
+            "name": "Unpack",
+            "actions": [
+              "[hE0sc763yYr3K8SK7J34Nn54wDwxsC63S09U4] Unpacked 6 files/folders in 5 seconds"
+            ]
+          }
+        ]
+      },
+      {
+        "action_line": "",
+        "series": "ballers 2015/2/3",
+        "show_details": "True",
+        "script_log": "",
+        "meta": null,
+        "fail_message": "",
+        "loaded": false,
+        "id": 204,
+        "size": "242 MB",
+        "category": "tv",
+        "pp": "D",
+        "retry": 0,
+        "completeness": 0,
+        "script": "Default",
+        "nzb_name": "Ballers.2015.S02E03.HDTV.x264-KILLERS.nzb",
+        "download_time": 136,
+        "storage": "/downloads/tv/Ballers.2015.S02E03.HDTV.x264-KILLERS",
+        "has_rating": false,
+        "status": "Completed",
+        "script_line": "",
+        "completed": 1470022395,
+        "nzo_id": "SABnzbd_nzo_84nM8D",
+        "downloaded": 253848017,
+        "report": "",
+        "path": "/downloads/incomplete/Ballers.2015.S02E03.HDTV.x264-KILLERS",
+        "postproc_time": 1,
+        "name": "Ballers.2015.S02E03.HDTV.x264-KILLERS",
+        "url": "Ballers.2015.S02E03.HDTV.x264-KILLERS.nzb",
+        "md5sum": "c25c2e1656ef44500b4f8221140897f0",
+        "bytes": 253848017,
+        "url_info": "",
+        "stage_log": [
+          {
+            "name": "Source",
+            "actions": [
+              "Ballers.2015.S02E03.HDTV.x264-KILLERS.nzb"
+            ]
+          },
+          {
+            "name": "Download",
+            "actions": [
+              "Downloaded in 2 mins 16 seconds at an average of 1.8 MB/s<br/>Age: 54m"
+            ]
+          },
+          {
+            "name": "Servers",
+            "actions": [
+              "news.tweaknews.eu=242 MB"
+            ]
+          },
+          {
+            "name": "Repair",
+            "actions": [
+              "[ballers.2015.s02e03.hdtv.x264-killers] Quick Check OK",
+              "[sample-ballers.2015.s02e03.hdtv.x264-killers] Quick Check OK"
+            ]
+          },
+          {
+            "name": "Unpack",
+            "actions": [
+              "[ballers.2015.s02e03.hdtv.x264-killers] Unpacked 1 files/folders in 1 sec"
+            ]
+          }
+        ]
+      },
+      {
+        "action_line": "",
+        "series": "ray donovan/4/6",
+        "show_details": "True",
+        "script_log": "",
+        "meta": null,
+        "fail_message": "",
+        "loaded": false,
+        "id": 203,
+        "size": "300 MB",
+        "category": "tv",
+        "pp": "D",
+        "retry": 0,
+        "completeness": 0,
+        "script": "Default",
+        "nzb_name": "Ray.Donovan.S04E06.HDTV.x264-FLEET.nzb",
+        "download_time": 191,
+        "storage": "/downloads/tv/Ray.Donovan.S04E06.HDTV.x264-FLEET",
+        "has_rating": false,
+        "status": "Completed",
+        "script_line": "",
+        "completed": 1470018845,
+        "nzo_id": "SABnzbd_nzo_8gU9MO",
+        "downloaded": 314268829,
+        "report": "",
+        "path": "/downloads/incomplete/Ray.Donovan.S04E06.HDTV.x264-FLEET",
+        "postproc_time": 1,
+        "name": "Ray.Donovan.S04E06.HDTV.x264-FLEET",
+        "url": "Ray.Donovan.S04E06.HDTV.x264-FLEET.nzb",
+        "md5sum": "bde0b5ba1e28057aa5b5cda130f07404",
+        "bytes": 314268829,
+        "url_info": "",
+        "stage_log": [
+          {
+            "name": "Source",
+            "actions": [
+              "Ray.Donovan.S04E06.HDTV.x264-FLEET.nzb"
+            ]
+          },
+          {
+            "name": "Download",
+            "actions": [
+              "Downloaded in 3 mins 11 seconds at an average of 1.6 MB/s<br/>Age: 31m"
+            ]
+          },
+          {
+            "name": "Servers",
+            "actions": [
+              "news.tweaknews.eu=300 MB"
+            ]
+          },
+          {
+            "name": "Repair",
+            "actions": [
+              "[ray.donovan.s04e06.hdtv.x264-fleet.sample] Quick Check OK",
+              "[ray.donovan.s04e06.hdtv.x264-fleet] Quick Check OK"
+            ]
+          },
+          {
+            "name": "Unpack",
+            "actions": [
+              "[ray.donovan.s04e06.hdtv.x264-fleet] Unpacked 1 files/folders in 1 sec"
+            ]
+          }
+        ]
+      },
+      {
+        "action_line": "",
+        "series": "dark matter/2/5",
+        "show_details": "True",
+        "script_log": "",
+        "meta": null,
+        "fail_message": "",
+        "loaded": false,
+        "id": 202,
+        "size": "257 MB",
+        "category": "tv",
+        "pp": "D",
+        "retry": 0,
+        "completeness": 0,
+        "script": "Default",
+        "nzb_name": "Dark.Matter.S02E05.HDTV.x264-FLEET.nzb",
+        "download_time": 139,
+        "storage": "/downloads/tv/Dark.Matter.S02E05.HDTV.x264-FLEET",
+        "has_rating": false,
+        "status": "Completed",
+        "script_line": "",
+        "completed": 1469849341,
+        "nzo_id": "SABnzbd_nzo_oPNGnm",
+        "downloaded": 269780442,
+        "report": "",
+        "path": "/downloads/incomplete/Dark.Matter.S02E05.HDTV.x264-FLEET",
+        "postproc_time": 1,
+        "name": "Dark.Matter.S02E05.HDTV.x264-FLEET",
+        "url": "Dark.Matter.S02E05.HDTV.x264-FLEET.nzb",
+        "md5sum": "3a0cd004ffa5df0fa58585038a0063ac",
+        "bytes": 269780442,
+        "url_info": "",
+        "stage_log": [
+          {
+            "name": "Source",
+            "actions": [
+              "Dark.Matter.S02E05.HDTV.x264-FLEET.nzb"
+            ]
+          },
+          {
+            "name": "Download",
+            "actions": [
+              "Downloaded in 2 mins 19 seconds at an average of 1.8 MB/s<br/>Age: 26m"
+            ]
+          },
+          {
+            "name": "Servers",
+            "actions": [
+              "news.tweaknews.eu=257 MB"
+            ]
+          },
+          {
+            "name": "Repair",
+            "actions": [
+              "[dark.matter.s02e05.hdtv.x264-fleet.sample] Quick Check OK",
+              "[dark.matter.s02e05.hdtv.x264-fleet] Quick Check OK"
+            ]
+          },
+          {
+            "name": "Unpack",
+            "actions": [
+              "[dark.matter.s02e05.hdtv.x264-fleet] Unpacked 1 files/folders in 1 sec"
+            ]
+          }
+        ]
+      },
+      {
+        "action_line": "",
+        "series": "killjoys/2/5",
+        "show_details": "True",
+        "script_log": "",
+        "meta": null,
+        "fail_message": "",
+        "loaded": false,
+        "id": 201,
+        "size": "297 MB",
+        "category": "tv",
+        "pp": "D",
+        "retry": 0,
+        "completeness": 0,
+        "script": "Default",
+        "nzb_name": "Killjoys.S02E05.HDTV.x264-FLEET.nzb",
+        "download_time": 166,
+        "storage": "/downloads/tv/Killjoys.S02E05.HDTV.x264-FLEET",
+        "has_rating": false,
+        "status": "Completed",
+        "script_line": "",
+        "completed": 1469845765,
+        "nzo_id": "SABnzbd_nzo_muzU5O",
+        "downloaded": 311801116,
+        "report": "",
+        "path": "/downloads/incomplete/Killjoys.S02E05.HDTV.x264-FLEET",
+        "postproc_time": 1,
+        "name": "Killjoys.S02E05.HDTV.x264-FLEET",
+        "url": "Killjoys.S02E05.HDTV.x264-FLEET.nzb",
+        "md5sum": "b65a2bf10b3cf615ec4b75664b6463f9",
+        "bytes": 311801116,
+        "url_info": "",
+        "stage_log": [
+          {
+            "name": "Source",
+            "actions": [
+              "Killjoys.S02E05.HDTV.x264-FLEET.nzb"
+            ]
+          },
+          {
+            "name": "Download",
+            "actions": [
+              "Downloaded in 2 mins 46 seconds at an average of 1.8 MB/s<br/>Age: 27m"
+            ]
+          },
+          {
+            "name": "Servers",
+            "actions": [
+              "news.tweaknews.eu=297 MB"
+            ]
+          },
+          {
+            "name": "Repair",
+            "actions": [
+              "[killjoys.s02e05.hdtv.x264-fleet] Quick Check OK",
+              "[killjoys.s02e05.hdtv.x264-fleet.sample] Quick Check OK"
+            ]
+          },
+          {
+            "name": "Unpack",
+            "actions": [
+              "[killjoys.s02e05.hdtv.x264-fleet] Unpacked 1 files/folders in 1 sec"
+            ]
+          }
+        ]
+      },
+      {
+        "action_line": "",
+        "series": "private eyes/1/10",
+        "show_details": "True",
+        "script_log": "",
+        "meta": null,
+        "fail_message": "",
+        "loaded": false,
+        "id": 200,
+        "size": "289 MB",
+        "category": "tv",
+        "pp": "D",
+        "retry": 0,
+        "completeness": 0,
+        "script": "Default",
+        "nzb_name": "Private.Eyes.S01E10.HDTV.x264-KILLERS.nzb",
+        "download_time": 155,
+        "storage": "/downloads/tv/Private.Eyes.S01E10.HDTV.x264-KILLERS",
+        "has_rating": false,
+        "status": "Completed",
+        "script_line": "",
+        "completed": 1469762786,
+        "nzo_id": "SABnzbd_nzo_IKstl6",
+        "downloaded": 303369715,
+        "report": "",
+        "path": "/downloads/incomplete/Private.Eyes.S01E10.HDTV.x264-KILLERS",
+        "postproc_time": 1,
+        "name": "Private.Eyes.S01E10.HDTV.x264-KILLERS",
+        "url": "Private.Eyes.S01E10.HDTV.x264-KILLERS.nzb",
+        "md5sum": "8040997f2f71cfe36c0afdc668d4033c",
+        "bytes": 303369715,
+        "url_info": "",
+        "stage_log": [
+          {
+            "name": "Source",
+            "actions": [
+              "Private.Eyes.S01E10.HDTV.x264-KILLERS.nzb"
+            ]
+          },
+          {
+            "name": "Download",
+            "actions": [
+              "Downloaded in 2 mins 35 seconds at an average of 1.9 MB/s<br/>Age: 22m"
+            ]
+          },
+          {
+            "name": "Servers",
+            "actions": [
+              "news.tweaknews.eu=289 MB"
+            ]
+          },
+          {
+            "name": "Repair",
+            "actions": [
+              "[private.eyes.s01e10.hdtv.x264-killers] Quick Check OK",
+              "[sample-private.eyes.s01e10.hdtv.x264-killers] Quick Check OK"
+            ]
+          },
+          {
+            "name": "Unpack",
+            "actions": [
+              "[private.eyes.s01e10.hdtv.x264-killers] Unpacked 1 files/folders in 1 sec"
+            ]
+          }
+        ]
+      },
+      {
+        "action_line": "",
+        "series": "mr robot/2/4",
+        "show_details": "True",
+        "script_log": "",
+        "meta": null,
+        "fail_message": "",
+        "loaded": false,
+        "id": 199,
+        "size": "236 MB",
+        "category": "tv",
+        "pp": "D",
+        "retry": 0,
+        "completeness": 0,
+        "script": "Default",
+        "nzb_name": "Mr.Robot.S02E04.HDTV.x264-FLEET.nzb",
+        "download_time": 126,
+        "storage": "/downloads/tv/Mr.Robot.S02E04.HDTV.x264-FLEET/123.mkv",
+        "has_rating": false,
+        "status": "Completed",
+        "script_line": "",
+        "completed": 1469679609,
+        "nzo_id": "SABnzbd_nzo_LbDjHV",
+        "downloaded": 247676277,
+        "report": "",
+        "path": "/downloads/incomplete/Mr.Robot.S02E04.HDTV.x264-FLEET",
+        "postproc_time": 2,
+        "name": "Mr.Robot.S02E04.HDTV.x264-FLEET",
+        "url": "Mr.Robot.S02E04.HDTV.x264-FLEET.nzb",
+        "md5sum": "d259f713fa9f45d8858eab534d769ad2",
+        "bytes": 247676277,
+        "url_info": "",
+        "stage_log": [
+          {
+            "name": "Source",
+            "actions": [
+              "Mr.Robot.S02E04.HDTV.x264-FLEET.nzb"
+            ]
+          },
+          {
+            "name": "Download",
+            "actions": [
+              "Downloaded in 2 mins 6 seconds at an average of 1.9 MB/s<br/>Age: 38m"
+            ]
+          },
+          {
+            "name": "Servers",
+            "actions": [
+              "news.tweaknews.eu=236 MB"
+            ]
+          },
+          {
+            "name": "Repair",
+            "actions": [
+              "[0fe65f605418489d98d4b090a3458cf9] Repaired in 0 seconds"
+            ]
+          },
+          {
+            "name": "Unpack",
+            "actions": [
+              "[123] Unpacked 1 files/folders in 1 sec"
+            ]
+          }
+        ]
+      },
+      {
+        "action_line": "",
+        "series": "rizzoli and isles/7/8",
+        "show_details": "True",
+        "script_log": "",
+        "meta": null,
+        "fail_message": "",
+        "loaded": false,
+        "id": 198,
+        "size": "296 MB",
+        "category": "tv",
+        "pp": "D",
+        "retry": 0,
+        "completeness": 0,
+        "script": "Default",
+        "nzb_name": "Rizzoli.and.Isles.S07E08.HDTV.x264-FLEET.nzb",
+        "download_time": 162,
+        "storage": "/downloads/tv/Rizzoli.and.Isles.S07E08.HDTV.x264-FLEET/123.mkv",
+        "has_rating": false,
+        "status": "Completed",
+        "script_line": "",
+        "completed": 1469503140,
+        "nzo_id": "SABnzbd_nzo_HMnPM0",
+        "downloaded": 310311671,
+        "report": "",
+        "path": "/downloads/incomplete/Rizzoli.and.Isles.S07E08.HDTV.x264-FLEET",
+        "postproc_time": 2,
+        "name": "Rizzoli.and.Isles.S07E08.HDTV.x264-FLEET",
+        "url": "Rizzoli.and.Isles.S07E08.HDTV.x264-FLEET.nzb",
+        "md5sum": "18b0b13eef77ce1a13984ef37d8cb2fa",
+        "bytes": 310311671,
+        "url_info": "",
+        "stage_log": [
+          {
+            "name": "Source",
+            "actions": [
+              "Rizzoli.and.Isles.S07E08.HDTV.x264-FLEET.nzb"
+            ]
+          },
+          {
+            "name": "Download",
+            "actions": [
+              "Downloaded in 2 mins 42 seconds at an average of 1.8 MB/s<br/>Age: 51m"
+            ]
+          },
+          {
+            "name": "Servers",
+            "actions": [
+              "news.tweaknews.eu=296 MB"
+            ]
+          },
+          {
+            "name": "Repair",
+            "actions": [
+              "[a2e8257ed0bcbe252f66f3f915a521e6] Repaired in 0 seconds"
+            ]
+          },
+          {
+            "name": "Unpack",
+            "actions": [
+              "[123] Unpacked 1 files/folders in 1 sec"
+            ]
+          }
+        ]
+      }
+    ],
+    "month_size": "7.3 G",
+    "diskspacetotal2": "5586.32",
+    "darwin": false,
+    "last_warning": "",
+    "have_warnings": "0",
+    "noofslots": 154,
+    "pause_int": "0",
+    "pp_pause_event": false,
+    "diskspacetotal1": "5586.32",
+    "loadavg": "0.07 | 0.06 | 0.05 | V=1982M R=158M",
+    "cache_max": "536870912",
+    "speedlimit": "100",
+    "webdir": "",
+    "left_quota": "0 ",
+    "diskspace1_norm": "3.6 T",
+    "pid": 201,
+    "paused": false,
+    "restart_req": false,
+    "power_options": true,
+    "helpuri": "https://sabnzbd.org/wiki/",
+    "uptime": "25d",
+    "total_size": "102.8 G",
+    "my_home": "/config",
+    "last_history_update": 1470684846,
+    "week_size": "2 M",
+    "version": "1.1.0RC1",
+    "my_lcldata": "/config",
+    "color_scheme": "Default",
+    "new_release": "",
+    "nt": false,
+    "cache_art": "2",
+    "finishaction": null,
+    "paused_all": false,
+    "quota": "0 ",
+    "cache_size": "1 MB",
+    "diskspace2": "3660.48",
+    "diskspace1": "3660.48",
+    "have_quota": false,
+    "day_size": "2 M",
+    "new_rel_url": ""
+  }
+}
