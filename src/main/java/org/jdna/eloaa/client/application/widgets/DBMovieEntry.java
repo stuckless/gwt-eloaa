@@ -28,7 +28,6 @@ import com.google.gwt.uibinder.client.UiHandler;
 import com.google.gwt.user.client.Timer;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.Composite;
-import com.google.gwt.user.client.ui.Widget;
 import gwt.material.design.client.base.AbstractIconButton;
 import gwt.material.design.client.constants.ProgressType;
 import gwt.material.design.client.ui.*;

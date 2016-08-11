@@ -5,3 +5,4 @@ downloads/
 movies/
 target/
 *.iml
+tmp/

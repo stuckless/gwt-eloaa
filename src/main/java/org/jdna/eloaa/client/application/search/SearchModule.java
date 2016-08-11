@@ -1,4 +1,4 @@
-package org.jdna.eloaa.client.application;
+package org.jdna.eloaa.client.application.search;
 
 /*
  * #%L
@@ -22,20 +22,11 @@ package org.jdna.eloaa.client.application;
 
 
 import com.gwtplatform.mvp.client.gin.AbstractPresenterModule;
-import org.jdna.eloaa.client.application.config.SettingsModule;
-import org.jdna.eloaa.client.application.home.HomeModule;
-import org.jdna.eloaa.client.application.movies.MoviesModule;
-import org.jdna.eloaa.client.application.search.SearchModule;
 
-public class ApplicationModule extends AbstractPresenterModule {
+public class SearchModule extends AbstractPresenterModule {
     @Override
     protected void configure() {
-        bindPresenter(ApplicationPresenter.class, ApplicationPresenter.MyView.class, ApplicationView.class,
-                ApplicationPresenter.MyProxy.class);
-
-        install(new HomeModule());
-        install(new MoviesModule());
-        install(new SettingsModule());
-        install(new SearchModule());
+        bindPresenter(SearchPresenter.class, SearchPresenter.MyView.class, SearchView.class,
+                SearchPresenter.MyProxy.class);
     }
 }

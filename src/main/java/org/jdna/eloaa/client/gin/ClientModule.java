@@ -26,6 +26,7 @@ import com.gwtplatform.mvp.client.annotations.ErrorPlace;
 import com.gwtplatform.mvp.client.annotations.UnauthorizedPlace;
 import com.gwtplatform.mvp.client.gin.AbstractPresenterModule;
 import com.gwtplatform.mvp.client.gin.DefaultModule;
+import com.gwtplatform.mvp.shared.proxy.RouteTokenFormatter;
 import org.jdna.eloaa.client.application.ApplicationModule;
 import org.jdna.eloaa.client.place.NameTokens;
 import org.jdna.eloaa.client.resources.ResourceLoader;
@@ -33,7 +34,9 @@ import org.jdna.eloaa.client.resources.ResourceLoader;
 public class ClientModule extends AbstractPresenterModule {
     @Override
     protected void configure() {
-        install(new DefaultModule.Builder().build());
+        install(new DefaultModule.Builder()
+                .tokenFormatter(RouteTokenFormatter.class)
+                .build());
         install(new ApplicationModule());
 
         bind(ResourceLoader.class).asEagerSingleton();

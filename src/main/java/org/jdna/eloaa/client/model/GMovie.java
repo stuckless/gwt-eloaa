@@ -24,6 +24,7 @@ import com.google.gwt.user.client.rpc.IsSerializable;
 import gwt.material.design.client.base.SearchObject;
 
 import java.util.Date;
+import java.util.Objects;
 
 /**
  * Created by seans on 04/08/16.
@@ -183,6 +184,18 @@ public class GMovie extends SearchObject implements IsSerializable {
         return statusMessage;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        GMovie gMovie = (GMovie) o;
+        return Objects.equals(id, gMovie.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id);
+    }
 
     public boolean isComplete() {
         return isDownloaded() && GProgress.STATUS_COMPLETE.equalsIgnoreCase(status);

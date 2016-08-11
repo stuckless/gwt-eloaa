@@ -18,10 +18,9 @@
   #L%
   -->
 <ui:UiBinder xmlns:ui='urn:ui:com.google.gwt.uibinder'
-        xmlns:g='urn:import:com.google.gwt.user.client.ui'
-        xmlns:m="urn:import:gwt.material.design.client.ui"
-        xmlns:ma="urn:import:gwt.material.design.addins.client"
-        xmlns:my='urn:import:org.jdna.eloaa.client.application.widgets'
+             xmlns:g='urn:import:com.google.gwt.user.client.ui'
+             xmlns:m="urn:import:gwt.material.design.client.ui"
+             xmlns:ma="urn:import:gwt.material.design.addins.client"
 >
 
     <ui:with field="res" type="org.jdna.eloaa.client.resources.AppResources"/>
@@ -46,13 +45,13 @@
                 <m:MaterialNavBrand text="Eloaa"/>
                 <m:MaterialNavSection float="RIGHT">
                     <m:MaterialTooltip text="Eloaa" position="BOTTOM">
-                        <m:MaterialLink iconType="HOME" iconPosition="NONE"/>
+                        <m:MaterialLink targetHistoryToken="/movies" iconType="HOME" iconPosition="NONE"/>
                     </m:MaterialTooltip>
                     <m:MaterialTooltip text="Settings" position="BOTTOM">
-                        <m:MaterialLink activates="sideNav" iconType="SETTINGS" iconPosition="NONE"/>
+                        <m:MaterialLink targetHistoryToken="/settings" activates="sideNav" iconType="SETTINGS" iconPosition="NONE"/>
                     </m:MaterialTooltip>
                     <m:MaterialTooltip text="Search" position="BOTTOM">
-                        <m:MaterialLink ui:field="btnSearch" iconType="SEARCH" iconPosition="NONE"/>
+                        <m:MaterialLink targetHistoryToken="/search" ui:field="btnSearch" iconType="SEARCH" iconPosition="NONE"/>
                     </m:MaterialTooltip>
                 </m:MaterialNavSection>
             </m:MaterialNavBar>
@@ -67,42 +66,15 @@
                 <ma:sideprofile.MaterialSideProfile url="http://static1.squarespace.com/static/51609147e4b0715db61d32b6/521b97cee4b05f031fd12dde/5519e33de4b06a1002802805/1431718693701/?format=1500w">
                     <m:MaterialLabel text="Eloaa" textColor="white"/>
                 </ma:sideprofile.MaterialSideProfile>
-                <m:MaterialLink text="Eloaa" textColor="blue" iconType="HOME"/>
-                <m:MaterialLink ui:field="btnSearch2" text="Search" textColor="blue" iconType="SEARCH"/>
-                <m:MaterialLink targetHistoryToken="/" text="New Releases" textColor="blue" iconType="MOVIE" separator="true"/>
-                <m:MaterialLink targetHistoryToken="!settings" text="Settings" textColor="blue" iconType="SETTINGS"/>
+                <m:MaterialLink targetHistoryToken="/movies" text="Eloaa" textColor="blue" iconType="HOME"/>
+                <m:MaterialLink targetHistoryToken="/search" text="Search" textColor="blue" iconType="SEARCH"/>
+                <m:MaterialLink targetHistoryToken="/movies" text="New Releases" textColor="blue" iconType="MOVIE" separator="true"/>
+                <m:MaterialLink targetHistoryToken="/settings" text="Settings" textColor="blue" iconType="SETTINGS"/>
             </m:MaterialSideNav>
         </header>
 
-        <m:MaterialContainer fontSize="0.8em" ui:field="mainContainer">
-            <m:MaterialLabel text="Movies" textColor="grey" addStyleNames="{style.label}"/>
-            <!-- Collapsible -->
-            <m:MaterialCollapsible type="POPOUT" grid="s12 m6 l8" ui:field="dbMovies">
-            </m:MaterialCollapsible>
-        </m:MaterialContainer>
-
-        <m:MaterialContainer ui:field="searchContainer" visible="false">
-            <m:MaterialPreLoader size="BIG" ui:field="searchProgress" visible="false"><m:MaterialSpinner color="blue-only" /></m:MaterialPreLoader>
-            <m:MaterialContainer ui:field="searchContainerInner">
-            </m:MaterialContainer>
-        </m:MaterialContainer>
-
-        <g:HTMLPanel ui:field="main"></g:HTMLPanel>
-
-        <!-- FAB -->
-        <!--<m:MaterialFAB>-->
-            <!--<m:MaterialTooltip text="Create" position="LEFT">-->
-                <!--<m:MaterialButton type="FLOATING" backgroundColor="red" iconType="ADD" size="LARGE"/>-->
-            <!--</m:MaterialTooltip>-->
-            <!--<m:MaterialFABList>-->
-                <!--<m:MaterialTooltip text="Theme" position="LEFT">-->
-                    <!--<m:MaterialAnchorButton type="FLOATING" waves="LIGHT" backgroundColor="blue" iconType="PALETTE"/>-->
-                <!--</m:MaterialTooltip>-->
-                <!--<m:MaterialTooltip text="Mail " position="LEFT">-->
-                    <!--<m:MaterialAnchorButton type="FLOATING" waves="LIGHT" backgroundColor="amber"  iconType="MAIL"/>-->
-                <!--</m:MaterialTooltip>-->
-            <!--</m:MaterialFABList>-->
-        <!--</m:MaterialFAB>-->
+        <g:HTMLPanel ui:field="main">
+        </g:HTMLPanel>
 
         <!-- Footer -->
         <m:MaterialFooter backgroundColor="blue" type="FIXED">
@@ -110,8 +82,5 @@
                 <m:MaterialLabel text="© 2017 Copyright Eloaa" />
             </m:MaterialFooterCopyright>
         </m:MaterialFooter>
-
-        <!-- Dialogs -->
-        <my:MovieNZBLookupDialog ui:field="nzbLookupDialog"></my:MovieNZBLookupDialog>
     </g:HTMLPanel>
 </ui:UiBinder>

@@ -21,28 +21,38 @@ package org.jdna.eloaa.client.application;
  */
 
 
-import com.google.gwt.event.shared.GwtEvent;
+import com.google.gwt.core.client.GWT;
+import com.google.gwt.user.client.Window;
 import com.google.inject.Inject;
 import com.google.web.bindery.event.shared.EventBus;
 import com.gwtplatform.mvp.client.Presenter;
 import com.gwtplatform.mvp.client.View;
-import com.gwtplatform.mvp.client.annotations.ContentSlot;
 import com.gwtplatform.mvp.client.annotations.ProxyStandard;
+import com.gwtplatform.mvp.client.presenter.slots.NestedSlot;
+import com.gwtplatform.mvp.client.proxy.NavigationEvent;
+import com.gwtplatform.mvp.client.proxy.NavigationHandler;
 import com.gwtplatform.mvp.client.proxy.Proxy;
-import com.gwtplatform.mvp.client.proxy.RevealContentHandler;
 
 public class ApplicationPresenter
-        extends Presenter<ApplicationPresenter.MyView, ApplicationPresenter.MyProxy> {
+        extends Presenter<ApplicationPresenter.MyView, ApplicationPresenter.MyProxy> implements NavigationHandler {
+    public void enableSearch() {
+        getView().enableSearch();
+    }
+
+    public void disableSearch() {
+        getView().disableSearch();
+    }
+
     interface MyView extends View {
-        void onGenerateListSeach();
+        void enableSearch();
+        void disableSearch();
     }
 
     @ProxyStandard
     interface MyProxy extends Proxy<ApplicationPresenter> {
     }
 
-    @ContentSlot
-    public static final GwtEvent.Type<RevealContentHandler<?>> SLOT_MAIN = new GwtEvent.Type<>();
+    public static final NestedSlot SLOT_MAIN = new NestedSlot();
 
     @Inject
     ApplicationPresenter(
@@ -53,8 +63,14 @@ public class ApplicationPresenter
     }
 
     @Override
-    protected void onReveal() {
-        super.onReveal();
-        getView().onGenerateListSeach();
+    protected void onBind() {
+        super.onBind();
+        addRegisteredHandler(NavigationEvent.getType(), this);
+    }
+
+    @Override
+    public void onNavigation(NavigationEvent navigationEvent) {
+        GWT.log("Navigation: " + navigationEvent.getRequest());
+        Window.scrollTo(0, 0);
     }
 }

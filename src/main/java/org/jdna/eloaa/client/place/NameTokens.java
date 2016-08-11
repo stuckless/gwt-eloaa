@@ -23,5 +23,7 @@ package org.jdna.eloaa.client.place;
 
 public class NameTokens {
     public static final String HOME = "/";
-    public static final String SETTINGS = "!settings";
+    public static final String SETTINGS = "/settings";
+    public static final String MOVIES = "/movies";
+    public static final String SEARCH = "/search";
 }
