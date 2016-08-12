@@ -1,4 +1,4 @@
-package org.jdna.eloaa.client.place;
+package org.jdna.eloaa.client.application.newreleases;
 
 /*
  * #%L
@@ -21,10 +21,12 @@ package org.jdna.eloaa.client.place;
  */
 
 
-public class NameTokens {
-    public static final String HOME = "/";
-    public static final String SETTINGS = "/settings";
-    public static final String MOVIES = "/movies";
-    public static final String SEARCH = "/search";
-    public static final String NEWRELEASES = "/newreleases";
+import com.gwtplatform.mvp.client.gin.AbstractPresenterModule;
+
+public class NewReleasesModule extends AbstractPresenterModule {
+    @Override
+    protected void configure() {
+        bindPresenter(NewReleasesPresenter.class, NewReleasesPresenter.MyView.class, NewReleasesView.class,
+                NewReleasesPresenter.MyProxy.class);
+    }
 }

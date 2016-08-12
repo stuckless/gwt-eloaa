@@ -26,6 +26,8 @@ import com.uwetrottmann.tmdb2.services.MoviesService;
 import com.uwetrottmann.tmdb2.services.SearchService;
 import org.jdna.eloaa.server.db.DBManager;
 import org.jdna.eloaa.server.qmonitor.QueueMonitor;
+import org.jdna.newreleases.DVDReleaseDatesService;
+import org.jdna.newreleases.NewReleases;
 import org.jdna.newznab.api.NZBS;
 import org.jdna.newznab.api.services.NZBSService;
 import org.jdna.sabnzbd.api.SABNZBD;
@@ -44,8 +46,6 @@ public class App {
     private static final App INSTANCE = new App();
     private Tmdb tmdb;
     private String tmdb_base_url;
-    private SearchService imdbSearchService;
-    private MoviesService imdbLookupService;
     private NZBS nzbs;
     private SABNZBD sabnzbd;
     private QueueMonitor queueMonitor;
@@ -55,6 +55,7 @@ public class App {
     private File downloadDir;
     private Properties properties;
     private File propFile;
+    private NewReleases newReleases;
 
     public static App get() {
         return INSTANCE;
@@ -99,6 +100,8 @@ public class App {
 
         // init queue monitor
         initQueueMonitor();
+
+        newReleases = new NewReleases();
 
         // dump settings..
         dumpProperty("eloaa.sabnzbd.url", null);
@@ -175,18 +178,23 @@ public class App {
         try {
             cfg = configurationService.configuration().execute().body();
             tmdb_base_url = cfg.images.base_url;
-        } catch (IOException e) {
+
+            for (String s: cfg.images.poster_sizes) {
+                System.out.println("POSTERS: " + s);
+            }
+
+            tmdb_base_url += cfg.images.poster_sizes.get(0);
+
+            System.out.println("Poster URL: " + tmdb_base_url);
+        } catch (Throwable e) {
             e.printStackTrace();
+            System.out.println("We have likely reached our limits with TMDB");
+            tmdb_base_url = "http://image.tmdb.org/t/p/w92";
         }
+    }
 
-        for (String s: cfg.images.poster_sizes) {
-            System.out.println("POSTERS: " + s);
-        }
-
-        tmdb_base_url += cfg.images.poster_sizes.get(0);
-
-        imdbSearchService = tmdb.searchService();
-        imdbLookupService = tmdb.moviesService();
+    public Tmdb getTMDB() {
+        return tmdb;
     }
 
     public String getProperty(String prop) {
@@ -202,7 +210,7 @@ public class App {
     }
 
     public SearchService getIMDBSearchService() {
-        return imdbSearchService;
+        return tmdb.searchService();
     }
 
     public File getConfigDir() {
@@ -257,8 +265,9 @@ public class App {
     }
 
     public MoviesService getIMDBLookupService() {
-        return imdbLookupService;
+        return tmdb.moviesService();
     }
+
 
     public SABNZBDService getSABNZBDService() {
         return sabnzbd.NZBSService();
@@ -301,5 +310,9 @@ public class App {
             e.printStackTrace();
         }
         System.out.println("Properties Changed, Serviced Reconfigured");
+    }
+
+    public DVDReleaseDatesService getNewReleasesService() {
+        return newReleases.DVDReleaseDatesService();
     }
 }

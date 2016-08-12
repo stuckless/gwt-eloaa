@@ -32,8 +32,10 @@
             </m:MaterialTooltip>
         </m:MaterialCollapsibleHeader>
         <m:MaterialCollapsibleBody>
+            <m:MaterialLabel text="" ui:field="releaseDate"/>
             <m:MaterialLabel text="" ui:field="status"/>
             <m:MaterialLabel text="" ui:field="statusMessage"/>
+            <m:MaterialButton ui:field="trailer" text="TRAILER" waves="DEFAULT"/>
         </m:MaterialCollapsibleBody>
     </m:MaterialCollapsibleItem>
 </ui:UiBinder>

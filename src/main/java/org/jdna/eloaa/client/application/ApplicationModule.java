@@ -25,6 +25,7 @@ import com.gwtplatform.mvp.client.gin.AbstractPresenterModule;
 import org.jdna.eloaa.client.application.config.SettingsModule;
 import org.jdna.eloaa.client.application.home.HomeModule;
 import org.jdna.eloaa.client.application.movies.MoviesModule;
+import org.jdna.eloaa.client.application.newreleases.NewReleasesModule;
 import org.jdna.eloaa.client.application.search.SearchModule;
 
 public class ApplicationModule extends AbstractPresenterModule {
@@ -37,5 +38,6 @@ public class ApplicationModule extends AbstractPresenterModule {
         install(new MoviesModule());
         install(new SettingsModule());
         install(new SearchModule());
+        install(new NewReleasesModule());
     }
 }

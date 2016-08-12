@@ -52,4 +52,8 @@ public interface EloaaServiceAsync {
     void getProperties(AsyncCallback<GResponse<Map<String, String>>> async);
 
     void updateProperties(Map<String, String> props, AsyncCallback<GResponse<Boolean>> async);
+
+    void newReleases(Integer year, Integer month, AsyncCallback<GResponse<List<GMovie>>> async);
+
+    void findIMDBID(String id, AsyncCallback<GResponse<String>> async);
 }

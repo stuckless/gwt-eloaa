@@ -22,6 +22,7 @@ package org.jdna.eloaa.client.application.widgets;
 
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.dom.client.ClickEvent;
+import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.uibinder.client.UiHandler;
@@ -37,6 +38,7 @@ import org.jdna.eloaa.client.model.GMovie;
 import org.jdna.eloaa.client.model.GProgress;
 import org.jdna.eloaa.client.model.GResponse;
 import org.jdna.eloaa.client.service.EloaaService;
+import org.jdna.eloaa.client.util.UIUtils;
 import org.jdna.eloaa.shared.util.Utils;
 
 /**
@@ -72,14 +74,30 @@ public class DBMovieEntry extends Composite {
     MaterialLabel statusMessage;
 
     @UiField
+    MaterialLabel releaseDate;
+
+    @UiField
     AbstractIconButton btnDelete;
 
     @UiField
     AbstractIconButton btnRemove;
 
+    @UiField
+    AbstractIconButton trailer;
+
     public DBMovieEntry(GMovie movie) {
         initWidget(ourUiBinder.createAndBindUi(this));
+        trailer.addClickHandler(new ClickHandler() {
+            @Override
+            public void onClick(ClickEvent event) {
+                openTrailer();
+            }
+        });
         setMovie(movie);
+    }
+
+    private void openTrailer() {
+        UIUtils.openIMDBHandler(movie).onClick(null);
     }
 
     @UiHandler("btnSearch")
@@ -99,6 +117,7 @@ public class DBMovieEntry extends Composite {
         title.setText(movie.getFullTitle());
         status.setText(movie.getStatus());
         statusMessage.setText(movie.getStatusMessage());
+        releaseDate.setText(UIUtils.getFormattedReleaseDate(movie));
 
         if (movie.isComplete()) {
             title.setIconColor("green");

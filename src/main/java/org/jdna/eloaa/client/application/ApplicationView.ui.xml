@@ -68,7 +68,7 @@
                 </ma:sideprofile.MaterialSideProfile>
                 <m:MaterialLink targetHistoryToken="/movies" text="Eloaa" textColor="blue" iconType="HOME"/>
                 <m:MaterialLink targetHistoryToken="/search" text="Search" textColor="blue" iconType="SEARCH"/>
-                <m:MaterialLink targetHistoryToken="/movies" text="New Releases" textColor="blue" iconType="MOVIE" separator="true"/>
+                <m:MaterialLink targetHistoryToken="/newreleases" text="New Releases" textColor="blue" iconType="MOVIE" separator="true"/>
                 <m:MaterialLink targetHistoryToken="/settings" text="Settings" textColor="blue" iconType="SETTINGS"/>
             </m:MaterialSideNav>
         </header>

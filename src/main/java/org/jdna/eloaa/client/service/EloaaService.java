@@ -66,4 +66,8 @@ public interface EloaaService extends RemoteService {
 
     public GResponse<Map<String,String>> getProperties();
     public GResponse<Boolean> updateProperties(Map<String,String> props);
+
+    public GResponse<List<GMovie>> newReleases(Integer year, Integer month);
+
+    public GResponse<String> findIMDBID(String id);
 }

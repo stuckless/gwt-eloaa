@@ -43,8 +43,9 @@ public class GMovie extends SearchObject implements IsSerializable {
     boolean downloaded;
     String localFile;
     String downloadToken;
-    private String status;
-    private String statusMessage;
+    String status;
+    String statusMessage;
+    Date releaseDate;
 
     public GMovie() {
     }
@@ -165,6 +166,7 @@ public class GMovie extends SearchObject implements IsSerializable {
                 ", downloadToken='" + downloadToken + '\'' +
                 ", status='" + status + '\'' +
                 ", statusMessage='" + statusMessage + '\'' +
+                ", releaseDate=" + releaseDate +
                 '}';
     }
 
@@ -199,5 +201,13 @@ public class GMovie extends SearchObject implements IsSerializable {
 
     public boolean isComplete() {
         return isDownloaded() && GProgress.STATUS_COMPLETE.equalsIgnoreCase(status);
+    }
+
+    public void setReleaseDate(Date releaseDate) {
+        this.releaseDate = releaseDate;
+    }
+
+    public Date getReleaseDate() {
+        return releaseDate;
     }
 }

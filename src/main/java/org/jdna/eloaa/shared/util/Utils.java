@@ -21,6 +21,7 @@ package org.jdna.eloaa.shared.util;
  */
 
 import com.google.gwt.i18n.client.NumberFormat;
+import org.jdna.eloaa.client.model.GMovie;
 
 /**
  * Created by seans on 08/08/16.
@@ -35,5 +36,13 @@ public class Utils {
 
     public static String formatPercent(double percent) {
         return NumberFormat.getFormat("##0.##").format(percent)+"%";
+    }
+
+    public static String toIMDBUrl(GMovie movie) {
+        return toIMDBUrl(movie.getImdbid());
+    }
+
+    public static String toIMDBUrl(String id) {
+        return "http://www.imdb.com/title/"+id+"/";
     }
 }

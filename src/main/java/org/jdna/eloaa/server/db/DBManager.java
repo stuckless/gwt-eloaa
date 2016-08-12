@@ -58,6 +58,7 @@ public class DBManager {
         // upgrade
         moviesDao.executeRaw("ALTER TABLE IF EXISTS movieentry ADD COLUMN IF NOT EXISTS status VARCHAR(255);");
         moviesDao.executeRaw("ALTER TABLE IF EXISTS movieentry ADD COLUMN IF NOT EXISTS statusMessage VARCHAR(255);");
+        moviesDao.executeRaw("ALTER TABLE IF EXISTS movieentry ADD COLUMN IF NOT EXISTS releaseDate TIMESTAMP;");
 
         // if you need to create the 'accounts' table make this call
         boolean devMode=false;
@@ -86,6 +87,7 @@ public class DBManager {
         m.setDescription(movie.getDescription());
         m.setDateAdded(new Date());
         m.setPosterURL(movie.getPosterUrl());
+        m.setReleaseDate(movie.getReleaseDate());
 
         MovieEntry m2 = moviesDao.queryForId(movie.getId());
         if (m2!=null) {

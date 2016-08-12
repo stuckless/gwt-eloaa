@@ -43,6 +43,9 @@ public class MovieEntry implements Serializable {
     @DatabaseField(index = true)
     private Date dateAdded;
 
+    @DatabaseField(index = true)
+    private Date releaseDate;
+
     @DatabaseField(canBeNull = false)
     private String title;
 
@@ -195,12 +198,22 @@ public class MovieEntry implements Serializable {
         return isDownloaded() && GProgress.STATUS_COMPLETE.equalsIgnoreCase(status);
     }
 
+    public Date getReleaseDate() {
+        return releaseDate;
+    }
+
+    public void setReleaseDate(Date releaseDate) {
+        this.releaseDate = releaseDate;
+    }
+
+
     @Override
     public String toString() {
         return "MovieEntry{" +
                 "id='" + id + '\'' +
                 ", imdbID='" + imdbID + '\'' +
                 ", dateAdded=" + dateAdded +
+                ", releaseDate=" + releaseDate +
                 ", title='" + title + '\'' +
                 ", year='" + year + '\'' +
                 ", description='" + description + '\'' +
@@ -228,6 +241,7 @@ public class MovieEntry implements Serializable {
         m.setDownloadToken(getDownloadToken());
         m.setStatus(getStatus());
         m.setStatusMessage(getStatusMessage());
+        m.setReleaseDate(getReleaseDate());
         return m;
     }
 

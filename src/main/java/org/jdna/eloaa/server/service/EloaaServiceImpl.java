@@ -22,9 +22,13 @@ package org.jdna.eloaa.server.service;
 
 import com.google.gwt.user.server.rpc.RemoteServiceServlet;
 import com.j256.ormlite.stmt.QueryBuilder;
+import com.uwetrottmann.tmdb2.entities.FindResults;
 import com.uwetrottmann.tmdb2.entities.Movie;
 import com.uwetrottmann.tmdb2.entities.MovieResultsPage;
+import com.uwetrottmann.tmdb2.entities.ReleaseDatesResults;
+import com.uwetrottmann.tmdb2.enumerations.ExternalSource;
 import com.uwetrottmann.tmdb2.services.SearchService;
+import gwt.material.design.client.ui.MaterialToast;
 import org.jdna.eloaa.client.application.GApp;
 import org.jdna.eloaa.client.model.GMovie;
 import org.jdna.eloaa.client.model.GProgress;
@@ -36,6 +40,7 @@ import org.jdna.eloaa.server.db.DBException;
 import org.jdna.eloaa.server.db.MovieEntry;
 import org.jdna.eloaa.shared.nzbs.model.NzbItem;
 import org.jdna.newznab.api.NZBSHelper;
+import org.jdna.newznab.api.model.Capabilities;
 import org.jdna.newznab.api.model.SearchResultItem;
 import org.jdna.newznab.api.model.SearchResults;
 import org.jdna.sabnzbd.api.model.AddStatus;
@@ -59,17 +64,7 @@ public class EloaaServiceImpl extends RemoteServiceServlet implements EloaaServi
             Response<MovieResultsPage> response = call.execute();
             MovieResultsPage page = response.body();
             for (Movie m : page.results) {
-                GMovie mn = new GMovie();
-                mn.setTitle(m.title);
-                mn.setDescription(m.overview);
-                mn.setId(m.id.toString());
-                mn.setImdbid(m.imdb_id);
-                if (m.release_date!=null) {
-                    Calendar c = Calendar.getInstance();
-                    c.setTime(m.release_date);
-                    mn.setYear(""+c.get(Calendar.YEAR));
-                }
-                mn.setPosterUrl(org.jdna.eloaa.server.App.get().getPosterBaseUrl() + m.poster_path);
+                GMovie mn = tmdbMovieToGMovie(m, false);
                 movies.add(mn);
             }
 
@@ -82,20 +77,90 @@ public class EloaaServiceImpl extends RemoteServiceServlet implements EloaaServi
 
     @Override
     public GResponse<GMovie> addMovie(GMovie movie) {
+        System.out.println("Adding Movie: " + movie);
         try {
+            if (movie.getId()==null) {
+                System.out.println("Finding Movie based on IMDBID: " + movie.getImdbid());
+                movie = findMovie(movie, true);
+            }
             App.get().getDbManager().addNewMovie(movie);
         } catch (SQLException e) {
             return new GResponse<>(Responses.ERR_SQL, e.getMessage());
         } catch (DBException e) {
             return new GResponse<>(Responses.ERR_ALREADY_EXISTS, e.getMessage());
+        } catch (IOException e) {
+            e.printStackTrace();
+            return new GResponse<>(1, e.getMessage());
         }
 
         return new GResponse<>(movie);
     }
 
+    GMovie tmdbMovieToGMovie(Movie m, boolean extraDetails) {
+        GMovie mn = new GMovie();
+        mn.setTitle(m.title);
+        mn.setDescription(m.overview);
+        mn.setId(m.id.toString());
+        if (mn.getImdbid()==null) {
+            mn.setImdbid(m.imdb_id);
+        }
+        if (m.release_date!=null) {
+            Calendar c = Calendar.getInstance();
+            c.setTime(m.release_date);
+            mn.setYear(""+c.get(Calendar.YEAR));
+        }
+        mn.setPosterUrl(org.jdna.eloaa.server.App.get().getPosterBaseUrl() + m.poster_path);
+        mn.setDateAdded(new Date());
+        if (extraDetails) {
+            try {
+                upgradeMovie(mn);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        if (mn.getReleaseDate()==null) {
+            mn.setReleaseDate(m.release_date);
+        }
+        return mn;
+    }
+
+    private void upgradeMovie(GMovie movie) throws IOException {
+        if (movie.getImdbid()==null || movie.getReleaseDate()==null) {
+            System.out.println("Upgrading Movie Details: " + movie);
+            Call<Movie> call = App.get().getIMDBLookupService().summary(Integer.parseInt(movie.getId()), "en", null);
+            Movie m = call.execute().body();
+            movie.setImdbid(m.imdb_id);
+            if (m.release_date != null) {
+                movie.setReleaseDate(m.release_date);
+            }
+        }
+    }
+
+    private GMovie findMovie(GMovie movie, boolean upgrade) throws IOException {
+        if (movie.getId()!=null) return movie;
+
+        FindResults results = App.get().getTMDB().findService().find(movie.getImdbid(), ExternalSource.IMDB_ID, "en").execute().body();
+        List<Movie> movies = results.movie_results;
+        if (upgrade) {
+            upgrade = movie.getImdbid() == null || movie.getReleaseDate() == null;
+        }
+        if (movies.size()>0) {
+            GMovie newMovie = tmdbMovieToGMovie(movies.get(0), upgrade);
+            if (movie.getImdbid()!=null) {
+                newMovie.setImdbid(movie.getImdbid());
+            }
+            if (movie.getReleaseDate()!=null) {
+                newMovie.setReleaseDate(movie.getReleaseDate());
+            }
+            return newMovie;
+        }
+        return null;
+    }
+
     @Override
     public GResponse<List<GMovie>> getMovies() {
         QueryBuilder<MovieEntry, String> queryBuilder = App.get().getDbManager().getMoviesDao().queryBuilder();
+        queryBuilder.orderBy("releaseDate", true);
         queryBuilder.orderBy("dateAdded", false);
         try {
             List<GMovie> retMovies = new ArrayList<>();
@@ -112,14 +177,11 @@ public class EloaaServiceImpl extends RemoteServiceServlet implements EloaaServi
 
     @Override
     public GResponse<List<NzbItem>> performMovieNZBLookup(GMovie movie) {
-        if (movie.getImdbid()==null) {
-            // find the imdb id
-            Call<Movie> call = App.get().getIMDBLookupService().summary(Integer.parseInt(movie.getId()), "en", null);
+        if (movie.getImdbid()==null || movie.getReleaseDate()==null) {
             try {
-                movie.setImdbid(call.execute().body().imdb_id);
+                upgradeMovie(movie);
             } catch (IOException e) {
-                e.printStackTrace();
-                return new GResponse<>("Unable to find imdb id");
+                return new GResponse<>("Unable to find IMDB for movie");
             }
 
             if (movie.getImdbid()==null) {
@@ -129,7 +191,12 @@ public class EloaaServiceImpl extends RemoteServiceServlet implements EloaaServi
             MovieEntry me = null;
             try {
                 me = App.get().getDbManager().getMoviesDao().queryForId(movie.getId());
-                me.setImdbID(movie.getImdbid());
+                if (movie.getImdbid()!=null) {
+                    me.setImdbID(movie.getImdbid());
+                }
+                if (movie.getReleaseDate()!=null) {
+                    me.setReleaseDate(movie.getReleaseDate());
+                }
                 App.get().getDbManager().getMoviesDao().update(me);
             } catch (SQLException e) {
                 e.printStackTrace();
@@ -175,23 +242,6 @@ public class EloaaServiceImpl extends RemoteServiceServlet implements EloaaServi
     @Override
     public GResponse<GMovie> downloadMovie(final NzbItem item, GMovie movie) {
         try {
-//            final ResponseBody body = App.get().getNZBIndexService().download(item.getGUID()).execute().body();
-//
-//            RequestBody upload = new RequestBody() {
-//                @Override
-//                public MediaType contentType() {
-//                    return MediaType.parse("application/x-nzb");
-//                }
-//
-//                @Override
-//                public void writeTo(BufferedSink bufferedSink) throws IOException {
-//                    bufferedSink.write(Utils.getBytesFromInputStream(body.byteStream()));
-//                    bufferedSink.flush();
-//                }
-//            };
-//
-//            AddStatus status = App.get().getSABNZBDService().addFile(upload).execute().body();
-
             AddStatus status = App.get().getSABNZBDService().addUrl(
                     NZBSHelper.getNZBUrl(App.get().getNZBS(), item)).execute().body();
             System.out.println("STATUS: " + status);
@@ -278,6 +328,33 @@ public class EloaaServiceImpl extends RemoteServiceServlet implements EloaaServi
         } catch (Throwable t) {
             t.printStackTrace();
             return new GResponse<>(100, "Failed to save", false);
+        }
+    }
+
+    @Override
+    public GResponse<List<GMovie>> newReleases(Integer year, Integer month) {
+        if (year==null) {
+            year = Calendar.getInstance().get(Calendar.YEAR);
+        }
+        if (month==null) {
+            month = Calendar.getInstance().get(Calendar.MONTH)+1;
+        }
+        try {
+            List<GMovie> movies = App.get().getNewReleasesService().getMovies(year, month).execute().body();
+            return new GResponse<>(movies);
+        } catch (IOException e) {
+            return new GResponse<>(1,"Failed to get new releases");
+        }
+    }
+
+    @Override
+    public GResponse<String> findIMDBID(String id) {
+        Call<Movie> call = App.get().getIMDBLookupService().summary(Integer.parseInt(id), "en", null);
+        try {
+            return new GResponse<>(0,"",call.execute().body().imdb_id);
+        } catch (IOException e) {
+            e.printStackTrace();
+            return new GResponse<>(1,e.getMessage(),null);
         }
     }
 }

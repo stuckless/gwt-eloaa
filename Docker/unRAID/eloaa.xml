@@ -49,8 +49,8 @@
             <Mode>rw</Mode>
         </Volume>
     </Data>
-    <WebUI>http://[IP]:[PORT:8080]/</WebUI>
+    <WebUI>http://[IP]:[PORT:8080]/eloaa/</WebUI>
     <Banner></Banner>
-    <Icon></Icon>
+    <Icon>https://raw.githubusercontent.com/stuckless/gwt-eloaa/master/Docker/unRAID/icon_128.xml</Icon>
     <ExtraParams></ExtraParams>
 </Containers>

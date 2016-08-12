@@ -1,4 +1,4 @@
-package org.jdna.eloaa.client.application.widgets;
+package org.jdna.eloaa.client.application.newreleases;
 
 /*
  * #%L
@@ -21,11 +21,13 @@ package org.jdna.eloaa.client.application.widgets;
  */
 
 import com.google.gwt.core.client.GWT;
-import com.google.gwt.dom.client.Style;
 import com.google.gwt.event.dom.client.ClickEvent;
+import com.google.gwt.event.dom.client.ClickHandler;
+import com.google.gwt.i18n.client.DateTimeFormat;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.uibinder.client.UiHandler;
+import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.Widget;
@@ -40,6 +42,9 @@ import org.jdna.eloaa.client.model.GResponse;
 import org.jdna.eloaa.client.model.Responses;
 import org.jdna.eloaa.client.service.EloaaService;
 import org.jdna.eloaa.client.util.UIUtils;
+import org.jdna.eloaa.shared.util.Utils;
+
+import java.util.Date;
 
 /**
  * Created by seans on 05/08/16.
@@ -53,7 +58,7 @@ public class MovieResult extends Composite {
     private static MovieResultUiBinder ourUiBinder = GWT.create(MovieResultUiBinder.class);
 
     @UiField
-    MaterialLabel desc;
+    MaterialLabel released;
 
     @UiField
     MaterialCardTitle title;
@@ -61,11 +66,11 @@ public class MovieResult extends Composite {
     @UiField
     MaterialImage poster;
 
-    public MovieResult(GMovie movie) {
+    public MovieResult(final GMovie movie) {
         this.movie=movie;
         initWidget(ourUiBinder.createAndBindUi(this));
-        title.setText(movie.getFullTitle());
-        desc.setText(movie.getDescription());
+        title.setText(movie.getTitle());
+        released.setText(UIUtils.getFormattedReleaseDate(movie));
         poster.setUrl(movie.getPosterUrl());
         UIUtils.setOpenIMDBHandler(movie, poster);
     }
