@@ -22,7 +22,7 @@
 >
 
     <m:MaterialContainer ui:field="searchContainer">
-        <m:MaterialPreLoader size="BIG" ui:field="searchProgress" visible="false"><m:MaterialSpinner color="blue-only" /></m:MaterialPreLoader>
+        <m:MaterialProgress ui:field="searchProgress" type="INDETERMINATE" visible="false"/>
         <m:MaterialPanel ui:field="searchContainerInner">
         </m:MaterialPanel>
     </m:MaterialContainer>

@@ -1,0 +1,13 @@
+<ui:UiBinder xmlns:ui='urn:ui:com.google.gwt.uibinder'
+             xmlns:g='urn:import:com.google.gwt.user.client.ui'
+             xmlns:m="urn:import:gwt.material.design.client.ui">
+    <ui:style>
+        .bold {
+            font-weight: bold;
+        }
+    </ui:style>
+    <g:HTMLPanel>
+        <m:MaterialLabel ui:field="label" display="INLINE" textColor="black" addStyleNames="{style.bold}"/>
+        <m:MaterialLabel ui:field="text" display="INLINE" textColor="silver"/>
+    </g:HTMLPanel>
+</ui:UiBinder>

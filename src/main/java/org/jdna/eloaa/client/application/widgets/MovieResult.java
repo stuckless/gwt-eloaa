@@ -74,4 +74,10 @@ public class MovieResult extends Composite {
     public void download(ClickEvent evt) {
         UIUtils.addMovie(movie);
     }
+
+    @UiHandler("imdb")
+    public void imdb(ClickEvent evt) {
+        UIUtils.openIMDBHandler(movie).onClick(evt);
+    }
+
 }

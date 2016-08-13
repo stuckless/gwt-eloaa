@@ -68,19 +68,13 @@ public class DBMovieEntry extends Composite {
     MaterialTooltip progressTooltip;
 
     @UiField
-    MaterialLabel status;
+    Label status;
 
     @UiField
-    MaterialLabel statusMessage;
-
-    @UiField
-    MaterialLabel releaseDate;
+    Label releaseDate;
 
     @UiField
     AbstractIconButton btnDelete;
-
-    @UiField
-    AbstractIconButton btnRemove;
 
     @UiField
     AbstractIconButton trailer;
@@ -115,8 +109,7 @@ public class DBMovieEntry extends Composite {
 
     private void updateUI() {
         title.setText(movie.getFullTitle());
-        status.setText(movie.getStatus());
-        statusMessage.setText(movie.getStatusMessage());
+        updateStatus();
         releaseDate.setText(UIUtils.getFormattedReleaseDate(movie));
 
         if (movie.isComplete()) {
@@ -264,23 +257,11 @@ public class DBMovieEntry extends Composite {
         });
     }
 
-    @UiHandler("btnRemove")
-    public void onRemove(ClickEvent evt) {
-        EloaaService.Instance.get().removeMovie(movie, new AsyncCallback<GResponse<Boolean>>() {
-            @Override
-            public void onFailure(Throwable caught) {
-                MaterialToast.fireToast("Failed to remove movie");
-            }
-
-            @Override
-            public void onSuccess(GResponse<Boolean> result) {
-                if (result.get()) {
-                    DBMovieEntry.this.removeFromParent();
-                    MaterialToast.fireToast("Removed " + movie.getFullTitle());
-                } else {
-                    MaterialToast.fireToast("Failed to remove movie");
-                }
-            }
-        });
+    public void updateStatus() {
+        String status = movie.getStatus();
+        if (movie.getStatusMessage()!=null) {
+            status += (": " + movie.getStatusMessage());
+        }
+        this.status.setText(status);
     }
 }

@@ -26,11 +26,16 @@ import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.uibinder.client.UiHandler;
 import com.google.gwt.user.client.ui.Composite;
+import gwt.material.design.client.base.AbstractIconButton;
+import gwt.material.design.client.constants.*;
+import gwt.material.design.client.ui.MaterialIcon;
 import gwt.material.design.client.ui.MaterialLabel;
+import gwt.material.design.client.ui.MaterialLink;
 import gwt.material.design.client.ui.MaterialRow;
 import org.jdna.eloaa.client.application.GApp;
 import org.jdna.eloaa.client.application.event.DownloadMovie;
 import org.jdna.eloaa.client.model.GMovie;
+import org.jdna.eloaa.client.util.UIUtils;
 import org.jdna.eloaa.shared.nzbs.model.NzbItem;
 
 /**
@@ -46,17 +51,27 @@ public class NZBRowItem extends Composite {
     private static NZBRowItemUiBinder ourUiBinder = GWT.create(NZBRowItemUiBinder.class);
 
     @UiField
-    MaterialLabel title;
+    MaterialLink title;
 
     @UiField
     MaterialLabel size;
+
+    @UiField
+    MaterialLabel age;
+
+    @UiField
+    MaterialIcon download;
 
     public NZBRowItem(NzbItem item, GMovie movie) {
         initWidget(ourUiBinder.createAndBindUi(this));
         this.item=item;
         this.movie=movie;
         this.title.setText(item.getTitle());
+        this.title.addClickHandler(UIUtils.openPreviewImage(item));
         this.size.setText(org.jdna.eloaa.shared.util.Utils.readableFileSize(item.getSize()));
+        this.size.setTextAlign(TextAlign.RIGHT);
+        this.age.setText(item.getAge()+"d");
+        this.age.setTextAlign(TextAlign.RIGHT);
     }
 
     @UiHandler("download")

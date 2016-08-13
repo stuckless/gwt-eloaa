@@ -89,6 +89,8 @@ public class SearchResultItem {
         return getAttr("guid");
     }
 
+
+
     private long getLongAttr(String attr) {
         Object val = attributes.get(attr);
         if (val==null) return 0;

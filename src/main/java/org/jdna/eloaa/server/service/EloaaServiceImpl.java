@@ -49,7 +49,10 @@ import retrofit2.Response;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.*;
+import java.util.concurrent.TimeUnit;
 
 /**
  * Created by seans on 04/08/16.
@@ -160,6 +163,7 @@ public class EloaaServiceImpl extends RemoteServiceServlet implements EloaaServi
     @Override
     public GResponse<List<GMovie>> getMovies() {
         QueryBuilder<MovieEntry, String> queryBuilder = App.get().getDbManager().getMoviesDao().queryBuilder();
+        queryBuilder.orderBy("downloaded", true);
         queryBuilder.orderBy("releaseDate", true);
         queryBuilder.orderBy("dateAdded", false);
         try {
@@ -210,6 +214,7 @@ public class EloaaServiceImpl extends RemoteServiceServlet implements EloaaServi
 
         System.out.println("SEARCHING: " + imdbid + "; " + movie.getImdbid() ) ;
 
+        SimpleDateFormat sdf = new SimpleDateFormat("EEE, d MMM yyyy HH:mm:ss Z");
         try {
             SearchResults results = App.get().getNZBIndexService().movies(imdbid).execute().body();
             List<NzbItem> items = new ArrayList<>();
@@ -219,7 +224,10 @@ public class EloaaServiceImpl extends RemoteServiceServlet implements EloaaServi
                     i.setTitle(sr.getTitle());
                     i.setGUID(sr.getGUID());
                     i.setSize(sr.getSize());
-                    i.setUsenetDate(sr.getUsenetDate());
+                    i.setUsenetDate(parseDate(sdf, sr.getUsenetDate()));
+                    if (i.getUsenetDate()!=null) {
+                        i.setAge(getDifferenceDays(i.getUsenetDate(), new Date()));
+                    }
                     i.setDescription(sr.getDescription());
                     items.add(i);
                 }
@@ -236,6 +244,19 @@ public class EloaaServiceImpl extends RemoteServiceServlet implements EloaaServi
         } catch (IOException e) {
             e.printStackTrace();
             return new GResponse<>("NZB index search failed");
+        }
+    }
+
+    public static int getDifferenceDays(Date d1, Date d2) {
+        long diff = d2.getTime() - d1.getTime();
+        return (int)TimeUnit.DAYS.convert(diff, TimeUnit.MILLISECONDS);
+    }
+
+    private Date parseDate(SimpleDateFormat sdf, String usenetDate) {
+        try {
+            return sdf.parse(usenetDate);
+        } catch (ParseException e) {
+            return null;
         }
     }
 

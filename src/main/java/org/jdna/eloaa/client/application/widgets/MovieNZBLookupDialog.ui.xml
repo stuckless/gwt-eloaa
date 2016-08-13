@@ -21,15 +21,14 @@
              xmlns:m="urn:import:gwt.material.design.client.ui">
     <m:MaterialModal
             ui:field="modal"
-            type="DEFAULT" dismissable="false" inDuration="500" outDuration="500">
+            type="DEFAULT" dismissable="true" inDuration="500" outDuration="500"
+    >
         <m:MaterialModalContent>
-            <m:MaterialTitle ui:field="title" title="Perform Lookup" description=""/>
             <m:MaterialPanel ui:field="items" width="100%">
-
             </m:MaterialPanel>
         </m:MaterialModalContent>
         <m:MaterialModalFooter>
-            <m:MaterialButton text="Close" type="FLAT" ui:field="close"/>
+            <m:MaterialButton text="Close" ui:field="close"/>
         </m:MaterialModalFooter>
     </m:MaterialModal>
 </ui:UiBinder>

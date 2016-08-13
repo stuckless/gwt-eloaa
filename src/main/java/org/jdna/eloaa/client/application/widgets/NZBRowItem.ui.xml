@@ -19,15 +19,17 @@
   -->
 <ui:UiBinder xmlns:ui='urn:ui:com.google.gwt.uibinder'
              xmlns:m="urn:import:gwt.material.design.client.ui">
-    <m:MaterialRow width="100%">
-        <m:MaterialColumn grid="s8">
-            <m:MaterialLabel text="TEXT" ui:field="title" />
-        </m:MaterialColumn>
-        <m:MaterialColumn grid="s2">
-            <m:MaterialLabel text="TEXT" ui:field="size"  />
-        </m:MaterialColumn>
-        <m:MaterialColumn grid="s2">
-            <m:MaterialIcon iconType="CLOUD_DOWNLOAD" iconColor="blue" waves="DEFAULT" circle="true" ui:field="download"/>
-        </m:MaterialColumn>
+    <ui:style>
+        .border {
+            border-bottom: dotted silver 1px;
+        }
+    </ui:style>
+    <m:MaterialRow width="100%" styleName="{style.border}">
+        <m:MaterialLink text="TEXT" ui:field="title" display="FLEX" flexWrap="WRAP" grid="s7" overflow="HIDDEN"/>
+        <m:MaterialLabel text="TEXT" ui:field="size" grid="s2" />
+        <m:MaterialLabel text="TEXT" ui:field="age" grid="s1"/>
+        <m:MaterialIcon grid="s2" iconType="CLOUD_DOWNLOAD" iconColor="blue" waves="DEFAULT" circle="true" ui:field="download"
+            display="FLEX" flexJustifyContent="END"
+        />
     </m:MaterialRow>
 </ui:UiBinder>

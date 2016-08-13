@@ -18,24 +18,31 @@
   #L%
   -->
 <ui:UiBinder xmlns:ui='urn:ui:com.google.gwt.uibinder'
-             xmlns:m="urn:import:gwt.material.design.client.ui">
+             xmlns:m="urn:import:gwt.material.design.client.ui" xmlns:g="urn:import:com.google.gwt.user.client.ui"
+             xmlns:my='urn:import:org.jdna.eloaa.client.application.widgets'>
+    <ui:style>
+        .padtop {
+            padding-top: 10px;
+        }
+    </ui:style>
     <m:MaterialCollapsibleItem ui:field="item">
         <m:MaterialCollapsibleHeader>
             <m:MaterialLink ui:field="title" text="" iconType="MOVIE" iconPosition="LEFT" iconColor="green"
                             textColor="black"/>
-            <m:MaterialLink ui:field="btnSearch" iconType="SEARCH" iconPosition="NONE" float="RIGHT" tooltip="Find Movie"/>
-            <m:MaterialLink ui:field="btnRemove" iconType="DELETE_SWEEP" tooltip="Remove from view but keep files" waves="DEFAULT" textColor="blue" float="RIGHT"/>
-            <m:MaterialLink ui:field="btnDelete" iconType="DELETE_FOREVER" tooltip="Delete Files" waves="DEFAULT" textColor="blue" float="RIGHT"/>
+            <m:MaterialLink ui:field="btnSearch" iconType="SEARCH" float="RIGHT" tooltip="Find Movie"/>
 
             <m:MaterialTooltip ui:field="progressTooltip" text="Progress" position="BOTTOM">
                 <m:MaterialProgress ui:field="progress" type="DETERMINATE" percent="0" visible="false"/>
             </m:MaterialTooltip>
         </m:MaterialCollapsibleHeader>
         <m:MaterialCollapsibleBody>
-            <m:MaterialLabel text="" ui:field="releaseDate"/>
-            <m:MaterialLabel text="" ui:field="status"/>
-            <m:MaterialLabel text="" ui:field="statusMessage"/>
-            <m:MaterialButton ui:field="trailer" text="TRAILER" waves="DEFAULT"/>
+            <my:Label label="Release Date" ui:field="releaseDate"/>
+            <my:Label label="Status" ui:field="status"/>
+            <g:HTMLPanel styleName="{style.padtop}">
+                <m:MaterialButton ui:field="trailer" text="IMDB" waves="DEFAULT"/>
+                <!--<m:MaterialButton ui:field="btnRemove" iconType="DELETE_SWEEP" tooltip="Remove from view but keep files" waves="DEFAULT" textColor="blue" float="RIGHT"/>-->
+                <m:MaterialButton ui:field="btnDelete" text="Remove" waves="DEFAULT"/>
+            </g:HTMLPanel>
         </m:MaterialCollapsibleBody>
     </m:MaterialCollapsibleItem>
 </ui:UiBinder>

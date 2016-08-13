@@ -27,10 +27,7 @@ import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.uibinder.client.UiHandler;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.Composite;
-import gwt.material.design.client.ui.MaterialModal;
-import gwt.material.design.client.ui.MaterialPanel;
-import gwt.material.design.client.ui.MaterialTitle;
-import gwt.material.design.client.ui.MaterialToast;
+import gwt.material.design.client.ui.*;
 import org.jdna.eloaa.client.model.GMovie;
 import org.jdna.eloaa.client.model.GResponse;
 import org.jdna.eloaa.client.service.EloaaService;
@@ -53,9 +50,6 @@ public class MovieNZBLookupDialog extends Composite {
     MaterialModal modal;
 
     @UiField
-    MaterialTitle title;
-
-    @UiField
     MaterialPanel items;
 
     public MovieNZBLookupDialog() {
@@ -69,7 +63,6 @@ public class MovieNZBLookupDialog extends Composite {
 
     public void setMovie(final GMovie movie) {
         this.movie=movie;
-        title.setTitle("Lookup for " + movie.getFullTitle());
         items.clear();
 
         modal.openModal();

@@ -37,6 +37,7 @@
 
                 <m:MaterialCardAction>
                     <m:MaterialLink text="ADD" iconType="ADD_TO_QUEUE" ui:field="download"/>
+                    <m:MaterialLink text="imdb" iconType="OPEN_IN_BROWSER" ui:field="imdb"/>
                 </m:MaterialCardAction>
             </m:MaterialCard>
         </m:MaterialColumn>

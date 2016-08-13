@@ -21,6 +21,7 @@ package org.jdna.eloaa.client.application;
  */
 
 
+import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.dom.client.KeyCodes;
 import com.google.gwt.event.dom.client.KeyUpEvent;
 import com.google.gwt.event.dom.client.KeyUpHandler;
@@ -30,6 +31,7 @@ import com.google.gwt.place.shared.PlaceController;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.user.client.History;
+import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.HTMLPanel;
 import com.google.gwt.user.client.ui.Widget;
 import com.google.web.bindery.event.shared.EventBus;
@@ -38,6 +40,7 @@ import gwt.material.design.client.events.SearchFinishEvent;
 import gwt.material.design.client.ui.MaterialContainer;
 import gwt.material.design.client.ui.MaterialNavBar;
 import gwt.material.design.client.ui.MaterialSearch;
+import gwt.material.design.client.ui.MaterialSideNav;
 import org.jdna.eloaa.client.application.event.MovieAdded;
 import org.jdna.eloaa.client.application.event.MovieAddedHandler;
 import org.jdna.eloaa.client.application.event.SearchEvent;
@@ -57,6 +60,9 @@ public class ApplicationView extends ViewImpl implements ApplicationPresenter.My
     MaterialNavBar navBar, navBarSearch;
 
     @UiField
+    MaterialSideNav sideNav;
+
+    @UiField
     MaterialSearch txtSearch;
 
     @Inject
@@ -64,7 +70,14 @@ public class ApplicationView extends ViewImpl implements ApplicationPresenter.My
             Binder uiBinder, final EventBus bus) {
         initWidget(uiBinder.createAndBindUi(this));
 
+        GWT.log("Platform: " + Window.Navigator.getPlatform());
+        GWT.log("UserAgent: " + Window.Navigator.getUserAgent());
+
         bindSlot(ApplicationPresenter.SLOT_MAIN, main);
+
+        if (Window.Navigator.getUserAgent().toLowerCase().contains("mobile")) {
+            sideNav.setCloseOnClick(true);
+        }
 
         txtSearch.addKeyUpHandler(new KeyUpHandler() {
             @Override
@@ -72,6 +85,14 @@ public class ApplicationView extends ViewImpl implements ApplicationPresenter.My
                 if (event.getNativeKeyCode() == KeyCodes.KEY_ENTER) {
                     GApp.get().getEventBus().fireEvent(new SearchEvent(true, txtSearch.getText()));
                 }
+            }
+        });
+
+        txtSearch.addCloseHandler(new CloseHandler<String>() {
+            @Override
+            public void onClose(CloseEvent<String> event) {
+                History.back();
+                History.fireCurrentHistoryState();
             }
         });
 

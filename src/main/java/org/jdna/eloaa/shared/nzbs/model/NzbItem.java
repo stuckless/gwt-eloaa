@@ -21,6 +21,7 @@ package org.jdna.eloaa.shared.nzbs.model;
  */
 
 import java.io.Serializable;
+import java.util.Date;
 
 /**
  * Created by seans on 08/08/16.
@@ -29,8 +30,9 @@ public class NzbItem implements Serializable {
     private String title;
     private String GUID;
     private long size;
-    private String usenetDate;
+    private Date usenetDate;
     private String description;
+    private int age;
 
     public NzbItem() {
     }
@@ -59,11 +61,11 @@ public class NzbItem implements Serializable {
         return size;
     }
 
-    public void setUsenetDate(String usenetDate) {
+    public void setUsenetDate(Date usenetDate) {
         this.usenetDate = usenetDate;
     }
 
-    public String getUsenetDate() {
+    public Date getUsenetDate() {
         return usenetDate;
     }
 
@@ -81,8 +83,18 @@ public class NzbItem implements Serializable {
                 "title='" + title + '\'' +
                 ", GUID='" + GUID + '\'' +
                 ", size=" + size +
-                ", usenetDate='" + usenetDate + '\'' +
+                ", usenetDate=" + usenetDate +
                 ", description='" + description + '\'' +
+                ", age=" + age +
                 '}';
     }
+
+    public int getAge() {
+        return age;
+    }
+
+    public void setAge(int age) {
+        this.age = age;
+    }
+
 }

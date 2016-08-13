@@ -37,6 +37,7 @@ import gwt.material.design.client.ui.MaterialLabel;
 import gwt.material.design.client.ui.MaterialToast;
 import org.jdna.eloaa.client.application.GApp;
 import org.jdna.eloaa.client.application.event.MovieAdded;
+import org.jdna.eloaa.client.application.widgets.Label;
 import org.jdna.eloaa.client.model.GMovie;
 import org.jdna.eloaa.client.model.GResponse;
 import org.jdna.eloaa.client.model.Responses;
@@ -58,7 +59,7 @@ public class MovieResult extends Composite {
     private static MovieResultUiBinder ourUiBinder = GWT.create(MovieResultUiBinder.class);
 
     @UiField
-    MaterialLabel released;
+    Label released;
 
     @UiField
     MaterialCardTitle title;
@@ -78,5 +79,10 @@ public class MovieResult extends Composite {
     @UiHandler("download")
     public void download(ClickEvent evt) {
         UIUtils.addMovie(movie);
+    }
+
+    @UiHandler("imdb")
+    public void imdb(ClickEvent evt) {
+        UIUtils.openIMDBHandler(movie).onClick(evt);
     }
 }

@@ -19,14 +19,15 @@
   -->
 <ui:UiBinder xmlns:ui='urn:ui:com.google.gwt.uibinder'
              xmlns:g='urn:import:com.google.gwt.user.client.ui'
-             xmlns:m="urn:import:gwt.material.design.client.ui">
+             xmlns:m="urn:import:gwt.material.design.client.ui"
+             xmlns:my='urn:import:org.jdna.eloaa.client.application.widgets'>
     <ui:style>
         .clickable {
             cursor: pointer;
         }
     </ui:style>
     <m:MaterialRow>
-        <m:MaterialColumn grid="l12">
+        <m:MaterialColumn grid="s12">
             <m:MaterialCard backgroundColor="white darken-1">
                 <m:MaterialCardContent textColor="black">
                     <g:HorizontalPanel horizontalAlignment="LEFT">
@@ -35,12 +36,13 @@
                         </g:cell>
                         <g:VerticalPanel>
                             <m:MaterialCardTitle ui:field="title" text="TITLE"/>
-                            <m:MaterialLabel text="" ui:field="released"/>
+                            <my:Label label="Release Date" ui:field="released"/>
                         </g:VerticalPanel>
                     </g:HorizontalPanel>
                 </m:MaterialCardContent>
                 <m:MaterialCardAction>
                     <m:MaterialLink text="ADD" iconType="ADD_TO_QUEUE" ui:field="download"/>
+                    <m:MaterialLink text="imdb" iconType="OPEN_IN_BROWSER" ui:field="imdb"/>
                 </m:MaterialCardAction>
             </m:MaterialCard>
         </m:MaterialColumn>

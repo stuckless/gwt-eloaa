@@ -31,10 +31,7 @@ import com.google.gwt.uibinder.client.UiHandler;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.Widget;
 import com.gwtplatform.mvp.client.ViewImpl;
-import gwt.material.design.client.ui.MaterialContainer;
-import gwt.material.design.client.ui.MaterialPanel;
-import gwt.material.design.client.ui.MaterialPreLoader;
-import gwt.material.design.client.ui.MaterialToast;
+import gwt.material.design.client.ui.*;
 import org.jdna.eloaa.client.application.GApp;
 import org.jdna.eloaa.client.application.event.SearchEvent;
 import org.jdna.eloaa.client.application.event.SearchEventHandler;
@@ -58,7 +55,7 @@ public class NewReleasesView extends ViewImpl implements NewReleasesPresenter.My
     MaterialPanel searchContainerInner;
 
     @UiField
-    MaterialPreLoader searchProgress;
+    MaterialProgress searchProgress;
 
     @Inject
     NewReleasesView(Binder uiBinder) {
