@@ -61,4 +61,6 @@ public interface EloaaServiceAsync {
     void cancelDownload(GMovie movie, AsyncCallback<GResponse<Boolean>> async);
 
     void getHistory(GMovie movie, AsyncCallback<GResponse<List<HistoryItem>>> async);
+
+    void getMoviesInTheatre(long from, long to, AsyncCallback<GResponse<List<GMovie>>> async);
 }

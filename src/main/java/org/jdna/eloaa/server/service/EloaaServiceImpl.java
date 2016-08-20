@@ -25,7 +25,9 @@ import com.j256.ormlite.stmt.QueryBuilder;
 import com.uwetrottmann.tmdb2.entities.FindResults;
 import com.uwetrottmann.tmdb2.entities.Movie;
 import com.uwetrottmann.tmdb2.entities.MovieResultsPage;
+import com.uwetrottmann.tmdb2.entities.TmdbDate;
 import com.uwetrottmann.tmdb2.enumerations.ExternalSource;
+import com.uwetrottmann.tmdb2.enumerations.SortBy;
 import com.uwetrottmann.tmdb2.services.SearchService;
 import org.jdna.eloaa.shared.model.GMovie;
 import org.jdna.eloaa.shared.model.GProgress;
@@ -45,6 +47,7 @@ import retrofit2.Call;
 import retrofit2.Response;
 
 import java.io.IOException;
+import java.rmi.server.ExportException;
 import java.sql.SQLException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -73,6 +76,41 @@ public class EloaaServiceImpl extends RemoteServiceServlet implements EloaaServi
         }
 
         return movies;
+    }
+
+    @Override
+    public GResponse<List<GMovie>> getMoviesInTheatre(long from, long to) {
+        if (from==0) {
+            Calendar cal = Calendar.getInstance();
+            cal.add(Calendar.DAY_OF_YEAR, -14);
+            from=cal.getTimeInMillis();
+        }
+
+        if (to==0) {
+            Calendar cal = Calendar.getInstance();
+            cal.setTimeInMillis(from);
+            cal.add(Calendar.DAY_OF_YEAR, 14);
+            to=cal.getTimeInMillis();
+        }
+
+        TmdbDate dfrom = new TmdbDate(new Date(from));
+        TmdbDate dto = new TmdbDate(new Date(to));
+
+        List<GMovie> movies = new ArrayList<>();
+        try {
+            Call<MovieResultsPage> call = App.get().getTMDB().discoverService().discoverMovie(false, true, "en", null, null, null, dfrom, dto, null, SortBy.PRIMARY_RELEASE_DATE_DESC, null, null, null, null, null, null, null, null, null, null, null);
+            Response<MovieResultsPage> response = call.execute();
+            MovieResultsPage page = response.body();
+            for (Movie m : page.results) {
+                GMovie mn = tmdbMovieToGMovie(m, false);
+                movies.add(mn);
+            }
+        } catch (Exception e) {
+            return new GResponse<>("Server Error");
+        }
+
+
+        return new GResponse<>(movies);
     }
 
     @Override

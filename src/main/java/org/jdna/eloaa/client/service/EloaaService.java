@@ -29,6 +29,7 @@ import org.jdna.eloaa.shared.model.GResponse;
 import org.jdna.eloaa.shared.model.HistoryItem;
 import org.jdna.eloaa.shared.nzbs.model.NzbItem;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -50,6 +51,8 @@ public interface EloaaService extends RemoteService {
     }
 
     public List<GMovie> searchMovies(String query);
+
+    public GResponse<List<GMovie>> getMoviesInTheatre(long from, long to);
 
     public GResponse<GMovie> addMovie(GMovie movie);
 

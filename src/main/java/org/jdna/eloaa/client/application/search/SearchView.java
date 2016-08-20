@@ -35,12 +35,14 @@ import org.jdna.eloaa.client.application.event.SearchEventHandler;
 import org.jdna.eloaa.client.application.widgets.MovieResult;
 import org.jdna.eloaa.shared.model.GMovie;
 import org.jdna.eloaa.client.service.EloaaService;
+import org.jdna.eloaa.shared.model.GResponse;
 
 import javax.inject.Inject;
 import java.util.List;
 
 public class SearchView extends ViewImpl implements SearchPresenter.MyView, SearchEventHandler {
     private HandlerRegistration searchHandler;
+    private String queryType;
 
     interface Binder extends UiBinder<Widget, SearchView> {
     }
@@ -59,11 +61,63 @@ public class SearchView extends ViewImpl implements SearchPresenter.MyView, Sear
         initWidget(uiBinder.createAndBindUi(this));
     }
 
+    public boolean isInteractiveSearch() {
+        return queryType==null || queryType.trim().length()==0;
+    }
+
     @Override
     protected void onAttach() {
-        GApp.get().getEventBus().fireEvent(new SearchEvent(true, null));
-        searchHandler = GApp.get().getEventBus().addHandler(SearchEvent.TYPE, this);
+        GWT.log("Search.onAttach()");
+        if (isInteractiveSearch()) {
+            GApp.get().getEventBus().fireEvent(new SearchEvent(true, null));
+            searchHandler = GApp.get().getEventBus().addHandler(SearchEvent.TYPE, this);
+        }
+
         super.onAttach();
+
+        if ("t".equalsIgnoreCase(queryType)) {
+            doSearchMoviesInTheatre();
+        }
+    }
+
+    private void doSearchMoviesInTheatre() {
+        searchContainerInner.clear();
+        searchProgress.setVisible(true);
+        EloaaService.Instance.get().getMoviesInTheatre(0, 0, new AsyncCallback<GResponse<List<GMovie>>>() {
+            @Override
+            public void onFailure(Throwable caught) {
+                MaterialToast.fireToast("Search Failed: " + caught.getMessage());
+            }
+
+            @Override
+            public void onSuccess(GResponse<List<GMovie>> gresult) {
+                if (!gresult.isOK()) {
+                    MaterialToast.fireToast("Search Failed: " + gresult.getMsg());
+                    return;
+                }
+                List<GMovie> result =  gresult.get();
+                if (result.size() == 0) {
+                    MaterialToast.fireToast("Nothing found");
+                    return;
+                }
+                try {
+                    searchProgress.setVisible(false);
+                    for (GMovie m : result) {
+                        searchContainerInner.add(new MovieResult(m));
+                    }
+                } catch (Throwable t) {
+                    t.printStackTrace();
+                    GWT.log("ERROR", t);
+                }
+
+            }
+        });
+    }
+
+    @Override
+    public void setQueryType(String type) {
+        this.queryType=type;
+        GWT.log("Search.setQueryType(): " + type);
     }
 
     @Override

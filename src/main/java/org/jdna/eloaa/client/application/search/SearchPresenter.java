@@ -28,11 +28,13 @@ import com.gwtplatform.mvp.client.View;
 import com.gwtplatform.mvp.client.annotations.NameToken;
 import com.gwtplatform.mvp.client.annotations.ProxyStandard;
 import com.gwtplatform.mvp.client.proxy.ProxyPlace;
+import com.gwtplatform.mvp.shared.proxy.PlaceRequest;
 import org.jdna.eloaa.client.application.ApplicationPresenter;
 import org.jdna.eloaa.client.place.NameTokens;
 
 public class SearchPresenter extends Presenter<SearchPresenter.MyView, SearchPresenter.MyProxy> {
     interface MyView extends View {
+        void setQueryType(String type);
     }
 
     @ProxyStandard
@@ -46,5 +48,11 @@ public class SearchPresenter extends Presenter<SearchPresenter.MyView, SearchPre
             MyView view,
             MyProxy proxy) {
         super(eventBus, view, proxy, ApplicationPresenter.SLOT_MAIN);
+    }
+
+    @Override
+    public void prepareFromRequest(PlaceRequest request) {
+        super.prepareFromRequest(request);
+        getView().setQueryType(request.getParameter("type",null));
     }
 }

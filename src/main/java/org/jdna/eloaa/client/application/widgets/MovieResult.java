@@ -53,12 +53,18 @@ public class MovieResult extends Composite {
     @UiField
     MaterialImage poster;
 
+    @UiField
+    MaterialLabel released;
+
     public MovieResult(GMovie movie) {
         this.movie=movie;
         initWidget(ourUiBinder.createAndBindUi(this));
         title.setText(movie.getFullTitle());
         desc.setText(movie.getDescription());
         poster.setUrl(movie.getPosterUrl());
+        if (movie.getReleaseDate()!=null) {
+            released.setText(UIUtils.getFormattedReleaseDate(movie));
+        }
         UIUtils.setOpenIMDBHandler(movie, poster);
     }
 
