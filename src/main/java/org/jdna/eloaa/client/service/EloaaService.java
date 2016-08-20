@@ -23,9 +23,10 @@ package org.jdna.eloaa.client.service;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.user.client.rpc.RemoteService;
 import com.google.gwt.user.client.rpc.RemoteServiceRelativePath;
-import org.jdna.eloaa.client.model.GMovie;
-import org.jdna.eloaa.client.model.GProgress;
-import org.jdna.eloaa.client.model.GResponse;
+import org.jdna.eloaa.shared.model.GMovie;
+import org.jdna.eloaa.shared.model.GProgress;
+import org.jdna.eloaa.shared.model.GResponse;
+import org.jdna.eloaa.shared.model.HistoryItem;
 import org.jdna.eloaa.shared.nzbs.model.NzbItem;
 
 import java.util.List;
@@ -62,6 +63,8 @@ public interface EloaaService extends RemoteService {
 
     public GResponse<Boolean> deleteMovie(GMovie movie);
 
+    public GResponse<Boolean> cancelDownload(GMovie movie);
+
     public GResponse<Boolean> removeMovie(GMovie movie);
 
     public GResponse<Map<String,String>> getProperties();
@@ -70,4 +73,6 @@ public interface EloaaService extends RemoteService {
     public GResponse<List<GMovie>> newReleases(Integer year, Integer month);
 
     public GResponse<String> findIMDBID(String id);
+
+    public GResponse<List<HistoryItem>> getHistory(GMovie movie);
 }

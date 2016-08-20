@@ -34,9 +34,9 @@ import gwt.material.design.client.constants.ProgressType;
 import gwt.material.design.client.ui.*;
 import org.jdna.eloaa.client.application.GApp;
 import org.jdna.eloaa.client.application.event.MovieNZBSearch;
-import org.jdna.eloaa.client.model.GMovie;
-import org.jdna.eloaa.client.model.GProgress;
-import org.jdna.eloaa.client.model.GResponse;
+import org.jdna.eloaa.shared.model.GMovie;
+import org.jdna.eloaa.shared.model.GProgress;
+import org.jdna.eloaa.shared.model.GResponse;
 import org.jdna.eloaa.client.service.EloaaService;
 import org.jdna.eloaa.client.util.UIUtils;
 import org.jdna.eloaa.shared.util.Utils;
@@ -75,6 +75,9 @@ public class DBMovieEntry extends Composite {
 
     @UiField
     AbstractIconButton btnDelete;
+
+    @UiField
+    AbstractIconButton btnCancelDownload;
 
     @UiField
     AbstractIconButton trailer;
@@ -117,6 +120,7 @@ public class DBMovieEntry extends Composite {
             btnSearch.setVisible(false);
             progress.setVisible(false);
             progress.setPercent(100.0);
+            btnCancelDownload.setVisible(false);
             unmonitor();
             return;
         }
@@ -125,6 +129,7 @@ public class DBMovieEntry extends Composite {
             title.setIconColor("purple");
             btnSearch.setVisible(true);
             progress.setVisible(false);
+            btnCancelDownload.setVisible(false);
             return;
         }
 
@@ -132,6 +137,7 @@ public class DBMovieEntry extends Composite {
             title.setIconColor("red");
             btnSearch.setVisible(true);
             progress.setVisible(false);
+            btnCancelDownload.setVisible(false);
             unmonitor();
             return;
         }
@@ -142,6 +148,7 @@ public class DBMovieEntry extends Composite {
             progress.setVisible(false);
             progress.setType(ProgressType.DETERMINATE);
             progress.setPercent(100.0);
+            btnCancelDownload.setVisible(false);
             return;
         }
 
@@ -149,6 +156,7 @@ public class DBMovieEntry extends Composite {
             title.setIconColor("orange");
             btnSearch.setVisible(true);
             progress.setVisible(false);
+            btnCancelDownload.setVisible(false);
         }
 
         if (movie.getDownloadToken()!=null) {
@@ -160,6 +168,7 @@ public class DBMovieEntry extends Composite {
             } else {
                 progress.setType(ProgressType.INDETERMINATE);
             }
+            btnCancelDownload.setVisible(true);
         }
     }
 
@@ -250,6 +259,30 @@ public class DBMovieEntry extends Composite {
                 if (result.get()) {
                     DBMovieEntry.this.removeFromParent();
                     MaterialToast.fireToast("Deleted " + movie.getFullTitle());
+                } else {
+                    MaterialToast.fireToast("Failed to delete movie");
+                }
+            }
+        });
+    }
+
+    @UiHandler("btnCancelDownload")
+    public void onCancelDownload(ClickEvent event) {
+        EloaaService.Instance.get().cancelDownload(movie, new AsyncCallback<GResponse<Boolean>>() {
+            @Override
+            public void onFailure(Throwable caught) {
+                MaterialToast.fireToast("Failed to delete movie");
+            }
+
+            @Override
+            public void onSuccess(GResponse<Boolean> result) {
+                if (result.get()) {
+                    MaterialToast.fireToast("Cancelled " + movie.getFullTitle());
+                    movie.setStatus(GProgress.STATUS_NOT_STARTED);
+                    movie.setStatusMessage("Cancelled");
+                    movie.setDownloadToken(null);
+                    updateUI();
+
                 } else {
                     MaterialToast.fireToast("Failed to delete movie");
                 }

@@ -22,30 +22,16 @@ package org.jdna.eloaa.client.application.newreleases;
 
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.dom.client.ClickEvent;
-import com.google.gwt.event.dom.client.ClickHandler;
-import com.google.gwt.i18n.client.DateTimeFormat;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.uibinder.client.UiHandler;
-import com.google.gwt.user.client.Window;
-import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.Widget;
 import gwt.material.design.client.ui.MaterialCardTitle;
 import gwt.material.design.client.ui.MaterialImage;
-import gwt.material.design.client.ui.MaterialLabel;
-import gwt.material.design.client.ui.MaterialToast;
-import org.jdna.eloaa.client.application.GApp;
-import org.jdna.eloaa.client.application.event.MovieAdded;
 import org.jdna.eloaa.client.application.widgets.Label;
-import org.jdna.eloaa.client.model.GMovie;
-import org.jdna.eloaa.client.model.GResponse;
-import org.jdna.eloaa.client.model.Responses;
-import org.jdna.eloaa.client.service.EloaaService;
+import org.jdna.eloaa.shared.model.GMovie;
 import org.jdna.eloaa.client.util.UIUtils;
-import org.jdna.eloaa.shared.util.Utils;
-
-import java.util.Date;
 
 /**
  * Created by seans on 05/08/16.

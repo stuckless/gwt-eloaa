@@ -42,6 +42,7 @@
                 <m:MaterialButton ui:field="trailer" text="IMDB" waves="DEFAULT"/>
                 <!--<m:MaterialButton ui:field="btnRemove" iconType="DELETE_SWEEP" tooltip="Remove from view but keep files" waves="DEFAULT" textColor="blue" float="RIGHT"/>-->
                 <m:MaterialButton ui:field="btnDelete" text="Remove" waves="DEFAULT"/>
+                <m:MaterialButton ui:field="btnCancelDownload" text="Cancel Download" waves="DEFAULT"/>
             </g:HTMLPanel>
         </m:MaterialCollapsibleBody>
     </m:MaterialCollapsibleItem>

@@ -29,12 +29,11 @@ import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.Widget;
 import com.gwtplatform.mvp.client.ViewImpl;
 import gwt.material.design.client.ui.*;
-import org.jdna.eloaa.client.application.ApplicationPresenter;
 import org.jdna.eloaa.client.application.GApp;
 import org.jdna.eloaa.client.application.event.SearchEvent;
 import org.jdna.eloaa.client.application.event.SearchEventHandler;
 import org.jdna.eloaa.client.application.widgets.MovieResult;
-import org.jdna.eloaa.client.model.GMovie;
+import org.jdna.eloaa.shared.model.GMovie;
 import org.jdna.eloaa.client.service.EloaaService;
 
 import javax.inject.Inject;

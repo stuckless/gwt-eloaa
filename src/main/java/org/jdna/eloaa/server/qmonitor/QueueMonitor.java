@@ -21,9 +21,9 @@ package org.jdna.eloaa.server.qmonitor;
  */
 
 import com.j256.ormlite.stmt.QueryBuilder;
-import org.jdna.eloaa.client.model.GProgress;
+import org.jdna.eloaa.shared.model.GProgress;
 import org.jdna.eloaa.server.App;
-import org.jdna.eloaa.server.db.MovieEntry;
+import org.jdna.eloaa.shared.model.MovieEntry;
 import org.jdna.sabnzbd.api.model.Queue;
 import org.jdna.sabnzbd.api.model.Slot;
 

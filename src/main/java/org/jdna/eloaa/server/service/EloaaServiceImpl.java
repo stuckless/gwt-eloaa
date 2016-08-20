@@ -25,22 +25,19 @@ import com.j256.ormlite.stmt.QueryBuilder;
 import com.uwetrottmann.tmdb2.entities.FindResults;
 import com.uwetrottmann.tmdb2.entities.Movie;
 import com.uwetrottmann.tmdb2.entities.MovieResultsPage;
-import com.uwetrottmann.tmdb2.entities.ReleaseDatesResults;
 import com.uwetrottmann.tmdb2.enumerations.ExternalSource;
 import com.uwetrottmann.tmdb2.services.SearchService;
-import gwt.material.design.client.ui.MaterialToast;
-import org.jdna.eloaa.client.application.GApp;
-import org.jdna.eloaa.client.model.GMovie;
-import org.jdna.eloaa.client.model.GProgress;
-import org.jdna.eloaa.client.model.GResponse;
-import org.jdna.eloaa.client.model.Responses;
+import org.jdna.eloaa.shared.model.GMovie;
+import org.jdna.eloaa.shared.model.GProgress;
+import org.jdna.eloaa.shared.model.GResponse;
+import org.jdna.eloaa.shared.model.Responses;
 import org.jdna.eloaa.client.service.EloaaService;
 import org.jdna.eloaa.server.App;
 import org.jdna.eloaa.server.db.DBException;
-import org.jdna.eloaa.server.db.MovieEntry;
+import org.jdna.eloaa.shared.model.HistoryItem;
+import org.jdna.eloaa.shared.model.MovieEntry;
 import org.jdna.eloaa.shared.nzbs.model.NzbItem;
 import org.jdna.newznab.api.NZBSHelper;
-import org.jdna.newznab.api.model.Capabilities;
 import org.jdna.newznab.api.model.SearchResultItem;
 import org.jdna.newznab.api.model.SearchResults;
 import org.jdna.sabnzbd.api.model.AddStatus;
@@ -314,6 +311,31 @@ public class EloaaServiceImpl extends RemoteServiceServlet implements EloaaServi
     }
 
     @Override
+    public GResponse<Boolean> cancelDownload(GMovie movie) {
+        try {
+            if (movie.getDownloadToken() != null) {
+                App.get().getSABNZBDService().delete(movie.getDownloadToken()).execute();
+            }
+            App.get().getQueueMonitor().unmonitor(movie.getId());
+
+            MovieEntry me;
+            me = App.get().getDbManager().getMoviesDao().queryForId(movie.getId());
+            me.setDownloadToken(movie.getDownloadToken());
+            App.get().getDbManager().getMoviesDao().update(me);
+
+            me.setDownloadToken(null);
+            me.setStatus(GProgress.STATUS_NOT_STARTED);
+            me.setStatusMessage("Cancelled Download");
+            App.get().getDbManager().update(me);
+            return new GResponse<>(true);
+        } catch (Throwable t) {
+            t.printStackTrace();
+        }
+        return new GResponse<>(false);
+    }
+
+
+    @Override
     public GResponse<Boolean> removeMovie(GMovie movie) {
         try {
             if (movie.getDownloadToken()!=null) {
@@ -377,5 +399,12 @@ public class EloaaServiceImpl extends RemoteServiceServlet implements EloaaServi
             e.printStackTrace();
             return new GResponse<>(1,e.getMessage(),null);
         }
+    }
+
+    @Override
+    public GResponse<List<HistoryItem>> getHistory(GMovie movie) {
+        List<HistoryItem> list = new ArrayList<>();
+
+        return new GResponse<>(list);
     }
 }

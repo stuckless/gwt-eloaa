@@ -21,7 +21,7 @@ package org.jdna.eloaa.shared.util;
  */
 
 import com.google.gwt.i18n.client.NumberFormat;
-import org.jdna.eloaa.client.model.GMovie;
+import org.jdna.eloaa.shared.model.GMovie;
 
 /**
  * Created by seans on 08/08/16.

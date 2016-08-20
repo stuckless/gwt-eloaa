@@ -20,7 +20,7 @@ package org.jdna.newreleases;
  * #L%
  */
 
-import org.jdna.eloaa.client.model.GMovie;
+import org.jdna.eloaa.shared.model.GMovie;
 import retrofit2.Call;
 import retrofit2.http.GET;
 import retrofit2.http.Path;

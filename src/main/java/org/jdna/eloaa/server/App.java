@@ -26,6 +26,7 @@ import com.uwetrottmann.tmdb2.services.MoviesService;
 import com.uwetrottmann.tmdb2.services.SearchService;
 import org.jdna.eloaa.server.db.DBManager;
 import org.jdna.eloaa.server.qmonitor.QueueMonitor;
+import org.jdna.eloaa.shared.model.HistoryItem;
 import org.jdna.newreleases.DVDReleaseDatesService;
 import org.jdna.newreleases.NewReleases;
 import org.jdna.newznab.api.NZBS;
@@ -80,6 +81,9 @@ public class App {
     }
 
     private void init() {
+        HistoryItem item = new HistoryItem();
+        item.setStatus("123");
+
         System.out.println("Starting...");
         // force config dir creation
         getConfigDir();

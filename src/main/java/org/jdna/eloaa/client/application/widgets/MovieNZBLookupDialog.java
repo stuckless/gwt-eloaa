@@ -28,8 +28,8 @@ import com.google.gwt.uibinder.client.UiHandler;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.Composite;
 import gwt.material.design.client.ui.*;
-import org.jdna.eloaa.client.model.GMovie;
-import org.jdna.eloaa.client.model.GResponse;
+import org.jdna.eloaa.shared.model.GMovie;
+import org.jdna.eloaa.shared.model.GResponse;
 import org.jdna.eloaa.client.service.EloaaService;
 import org.jdna.eloaa.shared.nzbs.model.NzbItem;
 

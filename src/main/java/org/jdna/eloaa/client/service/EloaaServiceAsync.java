@@ -21,9 +21,10 @@ package org.jdna.eloaa.client.service;
  */
 
 import com.google.gwt.user.client.rpc.AsyncCallback;
-import org.jdna.eloaa.client.model.GMovie;
-import org.jdna.eloaa.client.model.GProgress;
-import org.jdna.eloaa.client.model.GResponse;
+import org.jdna.eloaa.shared.model.GMovie;
+import org.jdna.eloaa.shared.model.GProgress;
+import org.jdna.eloaa.shared.model.GResponse;
+import org.jdna.eloaa.shared.model.HistoryItem;
 import org.jdna.eloaa.shared.nzbs.model.NzbItem;
 
 import java.util.List;
@@ -56,4 +57,8 @@ public interface EloaaServiceAsync {
     void newReleases(Integer year, Integer month, AsyncCallback<GResponse<List<GMovie>>> async);
 
     void findIMDBID(String id, AsyncCallback<GResponse<String>> async);
+
+    void cancelDownload(GMovie movie, AsyncCallback<GResponse<Boolean>> async);
+
+    void getHistory(GMovie movie, AsyncCallback<GResponse<List<HistoryItem>>> async);
 }

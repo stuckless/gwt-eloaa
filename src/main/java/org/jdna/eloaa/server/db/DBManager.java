@@ -24,7 +24,8 @@ import com.j256.ormlite.dao.Dao;
 import com.j256.ormlite.dao.DaoManager;
 import com.j256.ormlite.jdbc.JdbcConnectionSource;
 import com.j256.ormlite.table.TableUtils;
-import org.jdna.eloaa.client.model.GMovie;
+import org.jdna.eloaa.shared.model.GMovie;
+import org.jdna.eloaa.shared.model.MovieEntry;
 
 import java.io.File;
 import java.sql.SQLException;

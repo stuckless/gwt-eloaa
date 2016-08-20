@@ -21,7 +21,7 @@ package org.jdna.eloaa.client.application.event;
  */
 
 import com.google.gwt.event.shared.GwtEvent;
-import org.jdna.eloaa.client.model.GMovie;
+import org.jdna.eloaa.shared.model.GMovie;
 
 /**
  * Created by seans on 08/08/16.

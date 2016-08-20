@@ -91,6 +91,7 @@ public class ApplicationView extends ViewImpl implements ApplicationPresenter.My
         txtSearch.addCloseHandler(new CloseHandler<String>() {
             @Override
             public void onClose(CloseEvent<String> event) {
+                txtSearch.setText("");
                 History.back();
                 History.fireCurrentHistoryState();
             }
@@ -123,6 +124,7 @@ public class ApplicationView extends ViewImpl implements ApplicationPresenter.My
     public void enableSearch() {
         navBar.setVisible(false);
         navBarSearch.setVisible(true);
+        txtSearch.setFocus(true);
     }
 
     @Override

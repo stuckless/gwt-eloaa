@@ -1,4 +1,4 @@
-package org.jdna.eloaa.server.db;
+package org.jdna.eloaa.shared.model;
 
 /*
  * #%L
@@ -23,8 +23,6 @@ package org.jdna.eloaa.server.db;
 import com.j256.ormlite.field.DataType;
 import com.j256.ormlite.field.DatabaseField;
 import com.j256.ormlite.table.DatabaseTable;
-import org.jdna.eloaa.client.model.GMovie;
-import org.jdna.eloaa.client.model.GProgress;
 
 import java.io.Serializable;
 import java.util.Date;

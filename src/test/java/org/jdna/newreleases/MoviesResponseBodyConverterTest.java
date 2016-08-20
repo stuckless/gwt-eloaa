@@ -20,12 +20,10 @@ package org.jdna.newreleases;
  * #L%
  */
 
-import junit.framework.TestCase;
-import org.jdna.eloaa.client.model.GMovie;
+import org.jdna.eloaa.shared.model.GMovie;
 import org.junit.Test;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 /**

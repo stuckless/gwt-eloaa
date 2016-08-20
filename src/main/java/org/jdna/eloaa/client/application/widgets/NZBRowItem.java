@@ -26,7 +26,6 @@ import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.uibinder.client.UiHandler;
 import com.google.gwt.user.client.ui.Composite;
-import gwt.material.design.client.base.AbstractIconButton;
 import gwt.material.design.client.constants.*;
 import gwt.material.design.client.ui.MaterialIcon;
 import gwt.material.design.client.ui.MaterialLabel;
@@ -34,7 +33,7 @@ import gwt.material.design.client.ui.MaterialLink;
 import gwt.material.design.client.ui.MaterialRow;
 import org.jdna.eloaa.client.application.GApp;
 import org.jdna.eloaa.client.application.event.DownloadMovie;
-import org.jdna.eloaa.client.model.GMovie;
+import org.jdna.eloaa.shared.model.GMovie;
 import org.jdna.eloaa.client.util.UIUtils;
 import org.jdna.eloaa.shared.nzbs.model.NzbItem;
 

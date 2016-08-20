@@ -21,7 +21,7 @@ package org.jdna.newreleases;
  */
 
 import okhttp3.ResponseBody;
-import org.jdna.eloaa.client.model.GMovie;
+import org.jdna.eloaa.shared.model.GMovie;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;

@@ -1,4 +1,4 @@
-package org.jdna.eloaa.client.model;
+package org.jdna.eloaa.shared.model;
 
 /*
  * #%L

@@ -20,7 +20,7 @@ package org.jdna.eloaa.server.qmonitor;
  * #L%
  */
 
-import org.jdna.eloaa.server.db.MovieEntry;
+import org.jdna.eloaa.shared.model.MovieEntry;
 import static org.junit.Assert.*;
 import org.junit.Test;
 
