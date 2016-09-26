@@ -24,8 +24,28 @@
             type="DEFAULT" dismissable="true" inDuration="500" outDuration="500"
     >
         <m:MaterialModalContent>
-            <m:MaterialPanel ui:field="items" width="100%">
-            </m:MaterialPanel>
+            <m:MaterialRow>
+                <m:MaterialColumn grid="l4 m6 s12">
+                    <m:MaterialTab ui:field="tabs" backgroundColor="blue darken-3" textColor="white" indicatorColor="blue lighten-3">
+                        <m:MaterialTabItem waves="DEFAULT">
+                            <m:MaterialLink text="Search" href="#search"/>
+                        </m:MaterialTabItem>
+                        <m:MaterialTabItem waves="DEFAULT">
+                            <m:MaterialLink text="History" href="#history"/>
+                        </m:MaterialTabItem>
+                    </m:MaterialTab>
+                </m:MaterialColumn>
+
+                <m:MaterialColumn grid="s12" m:id="search">
+                    <m:MaterialPanel ui:field="items" width="100%">
+                    </m:MaterialPanel>
+                </m:MaterialColumn>
+                <m:MaterialColumn grid="s12" m:id="history">
+                    <m:MaterialLabel text="History"/>
+                </m:MaterialColumn>
+            </m:MaterialRow>
+
+
         </m:MaterialModalContent>
         <m:MaterialModalFooter>
             <m:MaterialButton text="Close" ui:field="close"/>

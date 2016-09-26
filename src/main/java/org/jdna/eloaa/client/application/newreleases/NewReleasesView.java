@@ -37,6 +37,7 @@ import org.jdna.eloaa.shared.model.GResponse;
 import org.jdna.eloaa.client.service.EloaaService;
 
 import javax.inject.Inject;
+import java.util.Date;
 import java.util.List;
 
 public class NewReleasesView extends ViewImpl implements NewReleasesPresenter.MyView {
@@ -115,8 +116,22 @@ public class NewReleasesView extends ViewImpl implements NewReleasesPresenter.My
                 try {
                     searchProgress.setVisible(false);
                     if (result.isOK()) {
+                        Date now = new Date();
+                        int month=now.getMonth();
+                        int day = now.getDate();
+                        Widget w = null;
+                        boolean scrolled=false;
                         for (GMovie m : result.get()) {
-                            searchContainerInner.add(new MovieResult(m));
+                            w = new MovieResult(m);
+                            searchContainerInner.add(w);
+                            if (!scrolled) {
+                                if (m.getReleaseDate() != null) {
+                                    if (m.getReleaseDate().getMonth() == month && Math.abs(m.getReleaseDate().getDate() - day) < 7) {
+                                        w.getElement().scrollIntoView();
+                                        scrolled=true;
+                                    }
+                                }
+                            }
                         }
                         if (result.get().size() == 0) {
                             MaterialToast.fireToast("No new releases");

@@ -87,8 +87,12 @@ public class MoviesResponseBodyConverter<T> implements Converter<ResponseBody, T
                     movie.setReleaseDate(dvdReleaseDate.getTime());
                 }
 
-                if (movie.getImdbid()!=null) {
-                    movies.add(movie);
+                if (movie.getImdbid()!=null && movie.getTitle()!=null) {
+                    // skip files with Season in the title
+                    if (  !(movie.getTitle().toLowerCase().matches(".*season\\s*[0-9]+.*")
+                            || movie.getTitle().toLowerCase().matches(".*:.*season.*") )) {
+                        movies.add(movie);
+                    }
                 }
             }
         }

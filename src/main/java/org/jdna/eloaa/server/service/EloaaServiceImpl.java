@@ -96,9 +96,11 @@ public class EloaaServiceImpl extends RemoteServiceServlet implements EloaaServi
         TmdbDate dfrom = new TmdbDate(new Date(from));
         TmdbDate dto = new TmdbDate(new Date(to));
 
+        System.out.println("Movies from: " + new Date(from) + " - " + new Date(to));
+
         List<GMovie> movies = new ArrayList<>();
         try {
-            Call<MovieResultsPage> call = App.get().getTMDB().discoverService().discoverMovie(false, true, "en", null, null, null, dfrom, dto, null, SortBy.PRIMARY_RELEASE_DATE_DESC, null, null, null, null, null, null, null, null, null, null, null);
+            Call<MovieResultsPage> call = App.get().getTMDB().discoverService().discoverMovie(false, true, "en", null, null, dfrom, dto, null, null, SortBy.PRIMARY_RELEASE_DATE_DESC, null, null, null, null, null, null, null, null, null, null, null);
             Response<MovieResultsPage> response = call.execute();
             MovieResultsPage page = response.body();
             for (Movie m : page.results) {
